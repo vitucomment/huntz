@@ -1,0 +1,88 @@
+Huntz:
+
+
+MainLand (Area principal):
+- Um asteroide flutuando no espaço tempo.
+- O jogador pode andar livremente na MainLand, interagindo com NPCs, objetos e descobrindo mais sobre a história.
+- Na MainLand ele pode acessar o Portal HZ, onde consegue acessar as hunts disponives no jogo. 
+- Também podem acessar lojas atraves de npcs para compra de equipamentos e consumiveis.
+- Também pode acessar seu proprio armazem através de um npc. 
+- Também pode falar com npc que evolui habilidades e status do personagem. 
+
+
+
+Hunts
+- Geradas proceduralmente
+- Nivel minimo necessário
+- As hunts possuem 3 niveis diferentes - (Fácil - Médio - Dificil). As dificuldades mudam a quantidade de salas daquela hunt e recompensas e bosses.
+- Relação: Fácil 3x3. Médio 4x4. Dificil 6x6. Uma hunt não é apenas uma única sala. O jogador ao matar todos os monstros de uma sala, pode escolher avançar para uma sala seguinte a partir da direção que escolhe. [I][ ][B]       [I][ ][ ][ ]        [I][ ][R][ ][ ]
+                        [ ][ ][ ]       [ ][ ][ ][B]        [B][ ][ ][ ][B]
+                        [R][ ][F]       [B][ ][ ][ ]        [ ][ ][R][ ][ ]
+                                        [R][ ][R][F]        [ ][B][ ][ ][ ]
+                                                            [ ][ ][R][ ][F]
+I - Inicio
+F - Fim
+R - Recompensa Extra
+B - Boss
+
+- A hunt termina quando o jogador enfrentar o boss final na ultima sala da hunt (F). 
+- Na história, hunts são falhas temporais abertas por uma entidade cosmica, que atrai monstros que destroem e infectam aquela realidade. Há vários universos, cada universo contém suas proprias hunts. Cada universo possui hunts do nivel mais baixo ao mais alto. Por enquanto, teremos 5 universos diferentes. Cada universo com 5 hunts. 
+- Cada universo tem uma tematica diferente, pois é como se cada universo fosse uma dimensão.
+- O painel de hunts é acessado na MainLand. 
+- Morrer numa hunt transporta o personagem para a MainLand. Perde-se experiencia de nivel na morte. Se a experiencia chegar a 0, o personagem nao regride de nivel. 
+- Quando o jogador finaliza uma sala, ele pode escolher ir para qualquer sala adjacente e ate mesmo voltar a sala anterior, que nao possui mais monstros pois foi limpa.
+- O jogador pode enfrentar todas as salas da hunt ou tentar enfrentar o minimo possivel para ir de I a F (inicio ao fim). Ele nunca sabe se a sala que ele esta enfrentando possui uma recompensa extra ou um boss surpresa. O ponto I e F sao sempre fixos, o inicio é sempre a primeira sala da esquerda para a direita, cima baixo, e o fim é sempre a ultima sala, também da esquerda para a direita, cima baixo, assim como está no diagrama que enviei. Enquanto as recompensas extras ou bosses surpresas variam suas posições a cada nova hunt gerada.
+
+
+
+
+Personagem
+- História: Morreu no mundo real e foi escolhido para servir como um guerreiro durante toda a eternidade à guild (Conhecida somente como "A Guilda").
+- Servir como um guerreiro, enfrentando os desafios de hunts instanciadas e geradas proceduralmente.
+- Nivel e habilidades + distribuição de status.
+- Equipamentos sem restrição de nivel mas com restrição de status. 
+- Escolhe 1 entre 4 classes. - Gurreiro - Arqueiro - Mago - Assassino.
+- Cada personagem tem 4 status diferentes: Força - Agilidade - Inteligencia - Sorte
+- Cada novo nivel fornece + 3 pontos de status para serem destribuidos.
+- Cada novo nivel fornece + 1 ponto de habilidade.
+- Cada classe deve possuir até 8 habilidades, sendo 5 ativas e 3 passivas.
+- Cada habilidade deve possuir 10 niveis.
+- As habilidades são liberadas até o nivel 20, sendo que as 3 passivas são liberadas nivel 10 - 15 e 20. No nivel 20 os personagens já podem possuir um ponto distribuido em cada habilidade.
+- No nivel 80 o jogador poderá ter distribuido 10 pontos em cada habilidade, atingindo assim o nivel máximo. 
+- Itens escalam seu Dano/Defesa/Efeito com base na quantidade de atributos dos personagens. Itens podem escalar com 1 ou 2 atributos do jogador, aumentando assim sua eficiencia.
+
+
+Equipamentos
+- Cada personagem pode equipar até 5 equipamentos. Sendo eles: Elmo - Armadura - Arma Principal - Arma Secundaria - Artefato Cosmico.
+- Armas de duas mãos bloqueiam o uso da Arma Secundaria. 
+- Equipamentos não possuem restrição de classes nem nivel, apenas status minimos. 
+- Equipamentos possuem 5 niveis de raridade: Normal - Incomum - Raro - Lendario - Divino
+- Equipamentos são únicos, o mesmo equipamento não pode conter uma versão normal e outra divino por exemplo. Uma 'Espada de ferro' é um item comum, não há uma "Espada de ferro lendaria" ou "Espada de Ferro" de classe lendaria. Os equipamentos não possuem restrição de nivel, mas sim de status, equipamentos mais raros possuem restrições maiores, eles exigem uma quantidade minima de algum status do jogador para que possam ser equipados, como Força ou Agilidade. Um equipamento pode exigir no maximo dois status simultaneamente do personagem, e caso exija, o dano/defesa/efeito do equipamento vai escalar com a quantidade de status que aquele personagem tem. Ou seja, se um item exige 50 pontos minimos de força, um personagem com 50 pontos pode equipar, mas se um personagem com 80 pontos distribuidos em força equipar esse item, o dano/defesa/efeito do item aumenta.
+- Os tipos de Armas incialmente serão:
+    1. Espada de uma mão (Arma principal)
+    2. Espada de duas mãos (Arma principal - Bloqueia slot de Arma Secundaria)
+    3. Adaga (Arma principal, pode ser equipado como dupla empunhadura, uma adaga na arma principal e outra na arma secundaria)
+    4. Cajado (duas mãos - bloqueia o slot de arma secundaria)
+    5. Varinha (uma mão)
+    6. Escudo (Arma secundaria)
+    7. Orbe Protetor (Arma secundaria magica)
+    8. Arco
+- Além dos tipos de armas, temos: Elmo - Armadura - Artefato Cosmico.
+- Artefatos Cosmicos são itens especiais que podem ser dropados ou fabricados ou comprados. Dão efeitos extras aos personagens.
+- Status de Armas:
+    1. Poder De Ataque (Arma principal: fisico se item de dano fisico, mágico e item de dano magico)
+    2. Velocidade de ataque.( Arma principal)
+    3. % Acerto Critico (Arma principal - quantidade de chance de acertar um critico)
+    4. % Dano Critico (Arma principal - multiplicador de dano ao acertar um ataque critico)
+    5. % Bloqueio (armas de duas mãos e escudo e orbe)
+    6. Defesa (escudo e orbe)
+    7. Resistencia Elemental (escudo e orbe) - Elementos: Fogo - Gelo - Terra - Raio
+    8. HP Adicional (Escudos e Orbe)
+- Status de armaduras:
+    1. Defesa
+    2. % Bloqueio (multiplicador da chance de bloqueio do personagem)
+    3. Resistencia Elemental
+    4. HP Adicional
+    5. % Acerto Critico (Elmo)
+    6. % Dano Critico (Elmo)
+- Itens podem ser aprimorados, aumentando ainda mais os status oferecidos. Para aprimorar um item é necessário um Nucleo De Aprimoramento, que pode ser dropado de monstros e bosses nas hunts. Cada nivel de aprimoramento exige uma quantidade de nucleos, aumentando de acordo com o nivel de aprimoramento que vai de +1 até +15. Itens também podem ser derretidos para criar núcleo de aprimoramento, cada raridade de item oferece uma quantidade de fragmento de nucleo. 100 framentos cria-se um nucleo completo. 

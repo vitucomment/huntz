@@ -1,0 +1,1239 @@
+fileFormatVersion: 2
+guid: 536fa7ba1dc0e5a4fa0448da0be52576
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5041862506629052100
+    second: Hero_Walk_8D_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hero_Walk_South_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1344
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff5a8c14b90f47e40a3acf891068573c
+      internalID: -797878455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_South_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1344
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ebd86adc50a0644e9f6bf9d326c3ad1
+      internalID: -975244687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_South_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1344
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96c2ea192c5f0164283be73a4e3c8986
+      internalID: 143683441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_South_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1344
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0476bdc7779c284cb1a3c70b9d33723
+      internalID: -1744628829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_South_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 1344
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a36e911386f09b646aae519432f37f37
+      internalID: -1502215993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_South_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1344
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2319864860ee61d45bd3a243cf4b3b49
+      internalID: 1050247913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthWest_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc120264090e2aa4ab12f68310cfa8a0
+      internalID: 2129021103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthWest_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1152
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404728e926ab82541bcb0c0746214d56
+      internalID: -114420281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthWest_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1152
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b2e06d80d5227640aab7fde8e9b3def
+      internalID: -155064362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthWest_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 1152
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c300ad222f0b64cb0b0089528dc8ae
+      internalID: 2108532628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthWest_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 1152
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94a231914528b8488c1d8b3ce4dd703
+      internalID: -953506726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthWest_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1152
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1713e722964aa9a419218bd559cc7745
+      internalID: -2075513148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_West_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6d844563419cf408169fb65299d982
+      internalID: 776831079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_West_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 960
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68ac7901e35d9e54c914aab0e437af4b
+      internalID: -2122191630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_West_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 960
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccc7bef61d8da2f47b3d5e9348f87495
+      internalID: 1145052162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_West_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 960
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13f6bdeef16ffa644929f43a689d5331
+      internalID: -898499440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_West_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 960
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c992a09d349e45d4584f2498fbb27d80
+      internalID: 1123965201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_West_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 960
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d03605f8eeaf6a4a88e547e650db8b5
+      internalID: 1047776360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthWest_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41815f3ae6ab78c4facd86426d288411
+      internalID: -694192065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthWest_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 768
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe744622ec26c24596ed47e12c50614
+      internalID: 1308228568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthWest_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 768
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e29c2b1152bb4d47b5d0adf2700cdb9
+      internalID: -1231616755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthWest_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 768
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b89aaf53a06dbb54099465cb497627e2
+      internalID: -760029559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthWest_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 768
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62b443649c458bd4c8a116d5bf0d1852
+      internalID: 1855910640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthWest_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 768
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9591da582ff68324d9f77b4b87d5b3bb
+      internalID: 1294636518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_North_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffb6ead8a44b424c9f565f32e3e7099
+      internalID: 1923870796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_North_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 576
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a45b11fb085e3749a3a0efad78c994b
+      internalID: 1462738482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_North_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 576
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cab7161efe31e94d86e4ecfbbef20d6
+      internalID: -240832671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_North_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 576
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb192494633e55442a4435e1ece0dcf9
+      internalID: -1460222114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_North_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 576
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5fef9be3b540f24eb624eb00bd59076
+      internalID: -1678354253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_North_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 576
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb80764070da1df4da5d992c6f055b5f
+      internalID: -986312761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthEast_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6330d5e2a99dfa74a814fdd2817a80d7
+      internalID: -2107776034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthEast_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 384
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ba156ddf02d18a4ea8c14c25f509f08
+      internalID: 641815540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthEast_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 384
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cce090702818f5a4b90a3a4c86aa4c4e
+      internalID: -812108847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthEast_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 384
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03734fe79b18e0942b12834a89332799
+      internalID: 1378709315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthEast_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 384
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b3c9d7d6cccd4478879f16b553d516
+      internalID: 1858707660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_NorthEast_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 384
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 740fd80e702ae57469979ec6036487df
+      internalID: -1497677950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_East_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f0a66e8abff76e48a1af7ce4868e50d
+      internalID: -1711775172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_East_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 192
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85a0247609fee841ba8d6fafb94897b
+      internalID: -490306050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_East_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 192
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c32e29e697e90bf49a9b6a306f67167e
+      internalID: -284921074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_East_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 192
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6b936b09557474283c6b30a2899360
+      internalID: 1670318443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_East_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 192
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53edb5bb70d885b4598aca2a33db98b9
+      internalID: -1689214052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_East_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 192
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c7589cf39e72a46a6deaaeb7445b02
+      internalID: 468002323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthEast_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ab4d32a543b7624c9e6f9105cadf816
+      internalID: -98423204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthEast_F01
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0c5d3d10cc50624fbbe2dc8657d4357
+      internalID: -1243770981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthEast_F02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2810fb755aa711d45b7f670a637e3a8a
+      internalID: -644248456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthEast_F03
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 0
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79760af612d7a78439090a151da9c70f
+      internalID: -64233588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthEast_F04
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b4cc0e808fcf1447bad07fe2b16b45a
+      internalID: -1072312924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Walk_SouthEast_F05
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 0
+        width: 208
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9898ff828830bc94e930c976c2b11999
+      internalID: -1948486985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 65eb264f88cb3c4478d10cae7174c59e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Hero_Walk_East_F00: -1711775172
+      Hero_Walk_East_F01: -490306050
+      Hero_Walk_East_F02: -284921074
+      Hero_Walk_East_F03: 1670318443
+      Hero_Walk_East_F04: -1689214052
+      Hero_Walk_East_F05: 468002323
+      Hero_Walk_NorthEast_F00: -2107776034
+      Hero_Walk_NorthEast_F01: 641815540
+      Hero_Walk_NorthEast_F02: -812108847
+      Hero_Walk_NorthEast_F03: 1378709315
+      Hero_Walk_NorthEast_F04: 1858707660
+      Hero_Walk_NorthEast_F05: -1497677950
+      Hero_Walk_NorthWest_F00: -694192065
+      Hero_Walk_NorthWest_F01: 1308228568
+      Hero_Walk_NorthWest_F02: -1231616755
+      Hero_Walk_NorthWest_F03: -760029559
+      Hero_Walk_NorthWest_F04: 1855910640
+      Hero_Walk_NorthWest_F05: 1294636518
+      Hero_Walk_North_F00: 1923870796
+      Hero_Walk_North_F01: 1462738482
+      Hero_Walk_North_F02: -240832671
+      Hero_Walk_North_F03: -1460222114
+      Hero_Walk_North_F04: -1678354253
+      Hero_Walk_North_F05: -986312761
+      Hero_Walk_SouthEast_F00: -98423204
+      Hero_Walk_SouthEast_F01: -1243770981
+      Hero_Walk_SouthEast_F02: -644248456
+      Hero_Walk_SouthEast_F03: -64233588
+      Hero_Walk_SouthEast_F04: -1072312924
+      Hero_Walk_SouthEast_F05: -1948486985
+      Hero_Walk_SouthWest_F00: 2129021103
+      Hero_Walk_SouthWest_F01: -114420281
+      Hero_Walk_SouthWest_F02: -155064362
+      Hero_Walk_SouthWest_F03: 2108532628
+      Hero_Walk_SouthWest_F04: -953506726
+      Hero_Walk_SouthWest_F05: -2075513148
+      Hero_Walk_South_F00: -797878455
+      Hero_Walk_South_F01: -975244687
+      Hero_Walk_South_F02: 143683441
+      Hero_Walk_South_F03: -1744628829
+      Hero_Walk_South_F04: -1502215993
+      Hero_Walk_South_F05: 1050247913
+      Hero_Walk_West_F00: 776831079
+      Hero_Walk_West_F01: -2122191630
+      Hero_Walk_West_F02: 1145052162
+      Hero_Walk_West_F03: -898499440
+      Hero_Walk_West_F04: 1123965201
+      Hero_Walk_West_F05: 1047776360
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,32 @@
+{
+  "name": "codex-marketplace-my-project-f1795447",
+  "interface": {
+    "displayName": "Codex Plugins (My project)"
+  },
+  "plugins": [
+    {
+      "name": "figma",
+      "source": {
+        "source": "local",
+        "path": "./plugins/figma"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    },
+    {
+      "name": "higgsfield",
+      "source": {
+        "source": "local",
+        "path": "./plugins/higgsfield"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    }
+  ]
+}
