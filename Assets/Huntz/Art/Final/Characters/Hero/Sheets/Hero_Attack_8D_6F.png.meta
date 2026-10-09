@@ -1,0 +1,1239 @@
+fileFormatVersion: 2
+guid: 5b08a98022995714cb1d7157be725d04
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7579351987966544914
+    second: Hero_Attack_8D_6F_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hero_Attack_South_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 672
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc7a77e54bcab34781936cdd76ef151
+      internalID: -832395852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_South_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 672
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e793609136ac8146aafc513878fb809
+      internalID: 870396038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_South_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 672
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0119216521d21044bffbbbca0d1af1d
+      internalID: 141585044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_South_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 672
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f095f781e27b6a41afa932c309640d0
+      internalID: -1932002544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_South_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 672
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14c09774131e1b46a1a4f74f8d1c2ad
+      internalID: 1626486870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_South_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 672
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96790abe71ae894093ad708b36c74ed
+      internalID: 402516990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthWest_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec681077ffc5a1479e9e0ecee1e770d
+      internalID: -1467547379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthWest_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 576
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee45c265a97e9e44284c6fb37ef96baf
+      internalID: 1569394657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthWest_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 576
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4113326576de86438edf453726492cd
+      internalID: 987288463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthWest_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 576
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a26a26f36006a940b2d3e2ceb24087e
+      internalID: -2031292458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthWest_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 576
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7dde42da38837149b5ba7704b175f99
+      internalID: -1089204817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthWest_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 576
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f27cc96ac8d16c4c8831b756e90f5fd
+      internalID: -213004227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_West_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d024bfc42503e48b82e0b9a9e1152f
+      internalID: 416211991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_West_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 480
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf78de0632cccd840bbd2f7052ba1ad7
+      internalID: 1321915986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_West_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 480
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7692cd7294f2f94681bfd21ad41b691
+      internalID: 868824431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_West_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 480
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 875c73114f3fb7c4aa7a563c00045774
+      internalID: 1188777822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_West_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 480
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b890e4d69d68ad4f9e85f70bacccc80
+      internalID: 456066006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_West_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 480
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05bde8d58f2f7384ca4731d6301578e3
+      internalID: -754871785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthWest_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7006c2c59bdb3484c8c5b1dacd5c6724
+      internalID: 948910370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthWest_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 384
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df77e95b3dfa74a45b40bce17529e4a5
+      internalID: -41034852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthWest_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 384
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a3d623dfdfaaf4eb4602bb6cafe200
+      internalID: -1474641232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthWest_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 384
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e378f48b6c066914da4107a96b79eecb
+      internalID: 299287647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthWest_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 384
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c22200964bfb3754ebefeae71efd5fb9
+      internalID: -1676071489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthWest_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 384
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8c5a75edefd794cb08a6ed94e9b25d
+      internalID: -1968785686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_North_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88731292cacc41469c0b4c9661af750
+      internalID: 918896886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_North_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 288
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2b15024235004a4eb77b8bba09743af
+      internalID: -47638116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_North_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 288
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5a3d1fe26582264f8d90da3fbd4fb06
+      internalID: 382680352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_North_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 288
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6829b9419fb1519498c11848ea8642f5
+      internalID: 2079312756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_North_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 288
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3593d05284c4cf4f9c75d79192455a0
+      internalID: 1786458974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_North_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 288
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a90b0e90a3595c4b96d85d058ae957b
+      internalID: -1103389147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthEast_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6544d9a5825d4e140aac43dca999216e
+      internalID: -1747455908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthEast_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 192
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517787b811eb7344387c755bf5db8024
+      internalID: 1105652216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthEast_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 192
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70787d6b977cf57409454207748939df
+      internalID: 889318629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthEast_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 192
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc3e8faf37a36340aa872a8046fd7a1
+      internalID: 1678447884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthEast_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 192
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9592893f831dfd42ac42fcdcb56fb61
+      internalID: 1030608355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_NorthEast_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 192
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec47a525bbdf864db4e499cc326c427
+      internalID: 724398534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_East_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0fc402b62964a04ca4a64abfc992819
+      internalID: 1652123366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_East_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 96
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825301e880ff6b447b774acba826a8f8
+      internalID: -430771135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_East_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 96
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fbd8e29c7da6cc44a0a579c05181ba8
+      internalID: -435668920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_East_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 96
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03cdd82a5857f564e982d01f23aa95a0
+      internalID: -101743599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_East_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 96
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe8a0cd1d88be2a448015a3a6c43db8d
+      internalID: -260114836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_East_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 96
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5713296b4d600044ab402582c9c162ac
+      internalID: 727127171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthEast_F00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162bad1453aa3df47bd3602f02b7384a
+      internalID: -1330448605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthEast_F01
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280736348c7233945b5bf289609ce42a
+      internalID: -180949099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthEast_F02
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d6b99520f431414b91d577f59940286
+      internalID: 1486827617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthEast_F03
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 0
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825a0bd55a642c94db3c77b250d775c7
+      internalID: -1558816415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthEast_F04
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eb32ffe02b36ef48a514ac83e9b4367
+      internalID: 879393795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Attack_SouthEast_F05
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 104
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87cd2b227b9e6a4da6d66ecafedd86b
+      internalID: -1496387837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ef7a025dabda7014a8c658d613218459
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Hero_Attack_East_F00: 1652123366
+      Hero_Attack_East_F01: -430771135
+      Hero_Attack_East_F02: -435668920
+      Hero_Attack_East_F03: -101743599
+      Hero_Attack_East_F04: -260114836
+      Hero_Attack_East_F05: 727127171
+      Hero_Attack_NorthEast_F00: -1747455908
+      Hero_Attack_NorthEast_F01: 1105652216
+      Hero_Attack_NorthEast_F02: 889318629
+      Hero_Attack_NorthEast_F03: 1678447884
+      Hero_Attack_NorthEast_F04: 1030608355
+      Hero_Attack_NorthEast_F05: 724398534
+      Hero_Attack_NorthWest_F00: 948910370
+      Hero_Attack_NorthWest_F01: -41034852
+      Hero_Attack_NorthWest_F02: -1474641232
+      Hero_Attack_NorthWest_F03: 299287647
+      Hero_Attack_NorthWest_F04: -1676071489
+      Hero_Attack_NorthWest_F05: -1968785686
+      Hero_Attack_North_F00: 918896886
+      Hero_Attack_North_F01: -47638116
+      Hero_Attack_North_F02: 382680352
+      Hero_Attack_North_F03: 2079312756
+      Hero_Attack_North_F04: 1786458974
+      Hero_Attack_North_F05: -1103389147
+      Hero_Attack_SouthEast_F00: -1330448605
+      Hero_Attack_SouthEast_F01: -180949099
+      Hero_Attack_SouthEast_F02: 1486827617
+      Hero_Attack_SouthEast_F03: -1558816415
+      Hero_Attack_SouthEast_F04: 879393795
+      Hero_Attack_SouthEast_F05: -1496387837
+      Hero_Attack_SouthWest_F00: -1467547379
+      Hero_Attack_SouthWest_F01: 1569394657
+      Hero_Attack_SouthWest_F02: 987288463
+      Hero_Attack_SouthWest_F03: -2031292458
+      Hero_Attack_SouthWest_F04: -1089204817
+      Hero_Attack_SouthWest_F05: -213004227
+      Hero_Attack_South_F00: -832395852
+      Hero_Attack_South_F01: 870396038
+      Hero_Attack_South_F02: 141585044
+      Hero_Attack_South_F03: -1932002544
+      Hero_Attack_South_F04: 1626486870
+      Hero_Attack_South_F05: 402516990
+      Hero_Attack_West_F00: 416211991
+      Hero_Attack_West_F01: 1321915986
+      Hero_Attack_West_F02: 868824431
+      Hero_Attack_West_F03: 1188777822
+      Hero_Attack_West_F04: 456066006
+      Hero_Attack_West_F05: -754871785
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

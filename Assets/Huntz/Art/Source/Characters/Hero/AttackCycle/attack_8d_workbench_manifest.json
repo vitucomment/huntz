@@ -1,0 +1,109 @@
+{
+  "name": "Hero_Attack_8D_6F_Workbench",
+  "layout": "directional",
+  "provider": "PixelLab pixelart_workbench / python-drawing",
+  "created": "2026-10-07",
+  "frame_count": 6,
+  "fps": 7.142857142857143,
+  "source_frame_size": [
+    104,
+    96
+  ],
+  "integer_scale": 1,
+  "ground_line": 93,
+  "source_sheet": "Assets/Huntz/Art/Source/Characters/Hero/AttackCycle/Hero_Attack_8D_6F_Source.png",
+  "final_sheet": "Assets/Huntz/Art/Final/Characters/Hero/Sheets/Hero_Attack_8D_6F.png",
+  "review_gif": "attack_review.gif",
+  "pixel_art_workbench": {
+    "drawing_id": "627df118-aff7-4483-856d-e57fedf569b3",
+    "recipe_file": "Hero_Attack_8D_6F_Workbench_Recipe.json",
+    "cost_generations": 0,
+    "columns": 3,
+    "durations_ms": [
+      140,
+      140,
+      140,
+      140,
+      140,
+      140
+    ],
+    "impact_frame": 3,
+      "notes": "Frame 2 prepares, frame 3 is the impact, frames 4-5 recover, frame 6 returns to rest. Body palette and first/last poses are exact copies of each direction reference. A two-pixel root translation tracks the strike direction; equipped sword and impact VFX are separate runtime layers."
+  },
+  "directions": [
+    {
+      "direction": "South",
+      "folder": "South",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_South.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/south/full.png"
+    },
+    {
+      "direction": "SouthWest",
+      "folder": "SouthWest",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_SouthWest.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/south-west/full.png"
+    },
+    {
+      "direction": "West",
+      "folder": "West",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_West.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/west/full.png"
+    },
+    {
+      "direction": "NorthWest",
+      "folder": "NorthWest",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_NorthWest_Corrected.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/north-west/full.png"
+    },
+    {
+      "direction": "North",
+      "folder": "North",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_North.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/north/full.png"
+    },
+    {
+      "direction": "NorthEast",
+      "folder": "NorthEast",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_NorthEast.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/north-east/full.png"
+    },
+    {
+      "direction": "East",
+      "folder": "East",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_East.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/east/full.png"
+    },
+    {
+      "direction": "SouthEast",
+      "folder": "SouthEast",
+      "reference": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Reference_SouthEast.png",
+      "download_format": "workbench_grid",
+      "grid_columns": 3,
+      "job_id": "627df118-aff7-4483-856d-e57fedf569b3",
+      "download_url": "https://api.pixellab.ai/mcp/pixel-tools/627df118-aff7-4483-856d-e57fedf569b3/assets/south-east/full.png"
+    }
+  ],
+  "align_ground": false,
+  "refresh_downloads": true
+}

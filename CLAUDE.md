@@ -1,10 +1,5 @@
-@AGENTS.md
+# Orientação para Claude Code
 
-## Específico do Claude Code
+Leia AGENTS.md e docs/STATUS.md no início da tarefa. Consulte docs/PROJECT_MAP.md e a documentação especializada apenas quando necessário. Atualize docs/HANDOFF.md ao deixar trabalho em andamento.
 
-- O servidor MCP do Unity está registrado como `unityMCP` (HTTP, `http://localhost:8080/mcp`) em escopo **local** da
-  pasta `/home/victor/workspace/workspace/Huntz` (WSL). Se abrir o Claude Code a partir desta pasta do projeto, registre
-  de novo ou use `--scope user` — ver [docs/UNITY_MCP.md](docs/UNITY_MCP.md).
-- Se o `unityMCP` aparecer como falho (ECONNREFUSED), o servidor no Unity provavelmente não estava rodando quando a
-  sessão começou: inicie-o no Unity e use `/mcp` para reconectar.
-- Ao terminar uma sessão de trabalho, atualize [docs/HANDOFF.md](docs/HANDOFF.md) para o próximo agente.
+As regras gerais estão em AGENTS.md para evitar cópias divergentes. Não dependa de caminhos locais do WSL ou de tokens salvos fora do projeto. Para controlar a Unity, siga docs/UNITY_MCP.md e verifique se a ponte está ativa.

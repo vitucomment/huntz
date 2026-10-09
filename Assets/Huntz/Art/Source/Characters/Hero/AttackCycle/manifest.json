@@ -1,0 +1,27 @@
+{
+  "name": "hero_attack_east",
+  "layout": "single_direction",
+  "frame_count": 12,
+  "fps": 14,
+  "source_frame_size": [104, 96],
+  "integer_scale": 1,
+  "reference": "Reference_East.png",
+  "source_sheet": "Assets/Huntz/Art/Source/Characters/Hero/AttackCycle/Hero_Attack_East_12F_Source.png",
+  "final_sheet": "Assets/Huntz/Art/Final/Characters/Hero/Sheets/Hero_Attack_East_12F.png",
+  "review_gif": "attack_review.gif",
+  "pixel_lab": {
+    "base_image_job": "2c03b2c6-83c1-4914-b486-a1f7adc68475",
+    "animation_job": "a47c35d3-6725-400d-8105-7cfe8aef57b3",
+    "animation_asset_id": "56b3dbd9-944b-56e1-88ba-228e5fa057b3",
+    "seed": 873141,
+    "cost_generations": 3,
+    "action": "Unarmed jab in strict right-facing side profile. First pull the near fist back into guard, then extend that arm forward for one quick punch, then retract it and return to the exact original ready pose. Keep the same east-facing profile throughout; never turn toward the viewer. Keep both feet planted on one baseline and move only the near arm with a small torso lean. Do not add any objects."
+  },
+  "directions": [
+    {
+      "direction": "East",
+      "folder": "East",
+      "download_url": "https://api.pixellab.ai/mcp/images/a47c35d3-6725-400d-8105-7cfe8aef57b3/download?index={index}"
+    }
+  ]
+}

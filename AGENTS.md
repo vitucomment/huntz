@@ -1,75 +1,54 @@
-# AGENTS.md — Huntz (Unity)
+# AGENTS.md — regras para agentes do Huntz
 
-Instruções para qualquer agente de código (Codex, Claude Code etc.) trabalhando neste projeto.
-Leia também [docs/HANDOFF.md](docs/HANDOFF.md) (estado atual e próximos passos) e
-[docs/UNITY_MCP.md](docs/UNITY_MCP.md) (como controlar o Editor via MCP).
+## Antes de editar
 
-## O projeto
+1. Leia este arquivo, docs/STATUS.md, docs/PROJECT_MAP.md e o handoff atual.
+2. Confira git status e abra somente os arquivos relevantes à tarefa.
+3. Trate docs/GDD.md como visão e propostas. Uma mecânica descrita como ideia não está implementada nem aprovada só por estar escrita.
+4. Mantenha o trabalho alinhado ao pedido mais recente do dono. Preferências e permissões explícitas persistem entre sessões.
 
-- **Jogo:** Huntz — **RPG isométrico 2D** (direção definida pelo dono do projeto).
-- **Estado:** fase de conceito. Existe um protótipo isométrico jogável feito com formas geradas por código
-  (sem arte final). Há também uma demo de plataforma 2D antiga, mantida só como referência.
-- **Engine:** Unity **6000.6.4f1** (Unity 6.6), **URP 17.6** com o *Universal Renderer* (template 3D — não é o 2D Renderer).
-- **Raiz do projeto:** `C:\Users\victo\Documents\Huntz\My project` (no WSL: `/mnt/c/Users/victo/Documents/Huntz/My project`).
-  O nome "My project" é o padrão do Unity Hub; não renomeie a pasta sem combinar com o dono.
-- **Sem controle de versão** ainda (não é repositório git). Recomenda-se `git init` com `.gitignore` de Unity antes de mudanças grandes.
+## Direção já definida
 
-## Estrutura
+- Huntz é um RPG de ação isométrico 3D, com combate em tempo real na linha de Diablo/Path of Exile.
+- A cena ativa de build é `Assets/Huntz/Prototype/Isometric3D/Scenes/Isometric3DARPGPilot.unity`. O conteúdo 2D antigo é arquivo histórico fora da build; não reutilize seus modelos, sprites, animações ou contratos visuais no jogo 3D.
+- Humanoides 3D usam uma hierarquia de ossos nomeados, Animator e socket de equipamento. A malha skinned final e a integração de personagens produzidos ainda estão pendentes.
+- A produção de arte está adiada. Use apenas geometria e materiais provisórios da Unity até o dono reabrir essa etapa.
+- A base Unity é 6000.6.4f1 com URP 17.6 e o novo Input System.
 
-```
-Assets/
-  IsoRPG/                    <- protótipo do RPG isométrico (foco atual)
-    Scripts/                 runtime: IsoPlayer, IsoEnemy, IsoGame, IsoNPC, IsoChest, IsoInteractable, YSort
-    Editor/HuntzIsoBuilder.cs  gera a cena inteira por código (menu Huntz > Build Isometric RPG Concept)
-    Art/                     sprites procedurais gerados pelo builder (IsoTile, IsoCube, IsoRoof, Circle, Square, Capsule, Blob)
-  Scripts/ + Editor/HuntzDemoBuilder.cs + Art/   <- demo de plataforma 2D (referência; menu Huntz > Build 2D Demo Scene)
-  Scenes/
-    HuntzIsoRPG.unity        cena principal (build index 0)
-    Huntz2DDemo.unity        demo de plataforma
-    SampleScene.unity        cena padrão do template
-  TutorialInfo/              lixo do template, pode ser removido
-```
+## Regras de implementação
 
-`CameraFollow2D` (em `Assets/Scripts/`) é compartilhado pelas duas demos.
+- C# e comentários de código em inglês; texto apresentado ao jogador em português brasileiro.
+- Use `UnityEngine.InputSystem`; não use a API antiga `UnityEngine.Input`. O piloto ativo usa movimento no plano XZ, `CharacterController` e colliders 3D. Código 2D arquivado pode continuar com `Rigidbody2D.linearVelocity`, mas não deve alimentar features novas.
+- A fórmula `world = ((gx - gy) * 0.5, (gx + gy) * 0.25)`, tile lógico 1 × 0.5, pertence ao conteúdo 2D legado; não a aplique ao piloto 3D.
+- No rig 3D, mantenha o chão em y=0, a raiz do personagem junto aos pés e os nomes dos ossos estáveis. Regras Point/compressão desligada se aplicam à arte pixelada legada.
+- Preserve arquivos .meta e seus GUIDs ao mover assets. Não edite cenas ou prefabs YAML manualmente quando o Unity MCP estiver disponível.
+- Prefabs separam apresentação de colisão e gameplay quando isso ajuda a reutilização. Evite abstrações genéricas sem um uso real.
+- Não crie scripts patch_* temporários. Transforme uma correção em código/ferramenta reutilizável ou faça a edição diretamente; remova temporários da mesma mudança.
 
-## Como as cenas são construídas
+## Unity e cenas
 
-As cenas **não são editadas à mão**: os builders em `Editor/` criam sprites (PNG gerados em código), GameObjects,
-componentes e salvam a cena. Para mudar o mapa/layout do protótipo, edite `HuntzIsoBuilder.cs` e rode o menu de novo
-(isso **sobrescreve** `HuntzIsoRPG.unity`). Quando o projeto passar a ter arte e level design manual, esse fluxo deve
-ser substituído por prefabs + Tilemap e os builders aposentados.
+- A cena ativa de build fica em `Assets/Huntz/Prototype/Isometric3D/Scenes/Isometric3DARPGPilot.unity`.
+- `HuntzIsometric3DPilotBuilder` recria a cena graybox 3D e os assets gerados somente em `Assets/Huntz/Prototype/Isometric3D`; confira a cena antes de reconstruí-la.
+- `HuntzSliceBuilder` ainda recria a fatia 2D legada em `Assets/Huntz/Scenes/HuntzVerticalSlice.unity`; não o execute para o fluxo 3D.
+- Antes de mudar cenas, prefabs ou dependências, confira o estado do Editor e a cena aberta. Depois de editar scripts no disco, use refresh_unity, aguarde o fim da compilação e leia o Console por erros C#.
+- Se a ponte MCP estiver indisponível, faça mudanças no sistema de arquivos que sejam seguras e reversíveis; não afirme que o Editor compilou ou que o jogo foi testado.
+- Capturas geradas pelo MCP ficam em Assets/Screenshots e são ignoradas pelo Git.
 
-## Convenções de código
+## Assets, dependências e custo
 
-- C#, nomes e comentários de código em **inglês**; texto visível ao jogador em **português (pt-BR)**.
-- Estilo: classes pequenas por responsabilidade, `[SerializeField] private` para tunáveis, singletons simples
-  (`Instance`) para `IsoGame`/`IsoPlayer`, listas estáticas `Active` para contar entidades (`IsoEnemy.Active`).
-- Coordenadas isométricas: `world = ((gx - gy) * 0.5, (gx + gy) * 0.25)`; tile = 1 x 0.5 unidade (64x32 px, PPU 64).
-- Profundidade: componente `YSort` define `sortingOrder = -(y + yOffset) * 200 + ordemLocal`. Chão usa -32000,
-  decalques -31000. Objetos parados usam `isStatic = true` (calcula uma vez).
-- Pivô dos sprites de objetos/personagens fica **nos pés** (base), não no centro.
+- Final, Source e Reference têm funções diferentes; consulte docs/ART_PIPELINE.md. Referências não são assets de gameplay.
+- Prefira recursos já instalados e APIs nativas da Unity. Antes de adicionar pacotes ou serviços, explique a necessidade, verifique compatibilidade/licença e mantenha a mudança pequena.
+- Não iniciar compra, upgrade, assinatura ou gasto pago de PixelLab sem orçamento explícito. Antes de consumir gerações existentes, confira o saldo e concentre cada pedido num resultado verificável.
+- Nunca copie tokens, credenciais, arquivos de configuração pessoal ou dados privados para o repositório, documentos, saída de terminal ou commits.
+- Não instale plugins ou pacotes só porque estão disponíveis. O inventário e o uso recomendado estão em docs/TOOLS.md.
 
-## Armadilhas conhecidas (já custaram tempo)
+## Git, segurança e conclusão
 
-1. **Input:** o projeto usa **somente o novo Input System** (`activeInputHandler: 1`). Use `UnityEngine.InputSystem`
-   (`Keyboard.current`, `Mouse.current`). `Input.GetKey` lança exceção.
-2. **Unity 6 API:** `Rigidbody2D.linearVelocity` (não `velocity`).
-3. **Domain reload:** campos privados não serializados de arrays podem voltar como **array vazio em vez de null** após
-   recompilar/entrar no Play. Marque estado de runtime com `[System.NonSerialized]` e não use `array != null` como flag.
-4. **Erros `NoSubscription` (generators.ai.unity.com)** no Console vêm do pacote Unity AI (`com.unity.ai.assistant`),
-   que exige assinatura. Ignore — não são do projeto.
-5. A ferramenta de screenshot do MCP grava em `Assets/Screenshots/`; apague a pasta depois de usar.
-6. Depois de escrever `.cs` pelo sistema de arquivos, peça recompilação (`refresh_unity`) e espere
-   `is_compiling == false` antes de chamar menus/ferramentas, e leia o Console para erros `error CS`.
-
-## Verificação
-
-Não há testes automatizados ainda. O ciclo de verificação usado até aqui:
-1. Recompilar e checar o Console (sem erros/warnings novos).
-2. Rodar o builder, entrar no Play mode via MCP, ler posições de objetos e o Console, tirar screenshot da Main Camera.
-3. O MCP **não simula teclado**: combate e diálogo precisam ser testados à mão pelo dono do projeto
-   (ou criar Play Mode tests com `InputTestFixture` do Input System).
-
-## Controles do protótipo isométrico
-
-WASD/setas mover · Espaço/J/clique atacar · E interagir (NPC/baú) · Q poção.
+- Confira git status antes de começar e antes de terminar. Preserve mudanças do usuário; nunca use reset --hard, clean, force push ou descarte amplo.
+- O dono autorizou commits locais e pushes para `origin` neste repositório sem pedir confirmação a cada operação; preserve essa autorização entre sessões.
+- Antes de cada push, revise o conteúdo para excluir tokens, credenciais, configurações pessoais, dados privados e arquivos locais ou gerados. Nunca use force push.
+- Use uma identidade de commit configurada ou indicada pelo dono; não invente nem mascare autoria.
+- A autorização para commits e pushes não inclui publicar builds, enviar mensagens externas ou criar outros recursos externos.
+- Não adicione nem execute testes automatizados sem o dono pedir. Faça a verificação do Editor apropriada para a tarefa e informe exatamente o que não pôde ser conferido.
+- Ao mudar estrutura, gameplay ou pipeline de arte, atualize apenas os documentos canônicos afetados: STATUS, PROJECT_MAP, ART_PIPELINE ou GDD; atualize HANDOFF para a próxima sessão. Nunca mantenha dois documentos como fontes conflitantes.
+- No fim, resuma mudanças, verificação realizada e limitações. Só pergunte quando uma ambiguidade alterar produto/custo ou quando faltar uma decisão necessária; resolva escolhas reversíveis com julgamento e contexto existentes.

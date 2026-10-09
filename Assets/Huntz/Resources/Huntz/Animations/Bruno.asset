@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d71767083335f0468db64e884beee09, type: 3}
+  m_Name: Bruno
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzDirectionalSpriteSet
+  clips:
+  - action: Idle
+    direction: South
+    frames:
+    - {fileID: -589382420, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -1412823910, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 792225479, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 809826170, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Idle
+    direction: SouthWest
+    frames:
+    - {fileID: -2012113681, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -738457182, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -1125135320, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -701595267, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Idle
+    direction: West
+    frames:
+    - {fileID: 254829565, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -812518744, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1669069667, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -998786294, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Idle
+    direction: NorthWest
+    frames:
+    - {fileID: 1904900807, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 2050315412, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 653817484, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1546137065, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Idle
+    direction: North
+    frames:
+    - {fileID: 282576247, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 557705999, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 846893581, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1425825761, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Idle
+    direction: NorthEast
+    frames:
+    - {fileID: -376292802, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1464468800, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1268806115, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -1329230409, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Idle
+    direction: East
+    frames:
+    - {fileID: -247762971, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1543905403, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -1528374006, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -1248187320, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Idle
+    direction: SouthEast
+    frames:
+    - {fileID: 443563261, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1669187418, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: 1695712566, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    - {fileID: -990963039, guid: 477221989d5d28a4abf2e6da4e180943, type: 3}
+    framesPerSecond: 6
+    loop: 1

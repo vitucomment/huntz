@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d71767083335f0468db64e884beee09, type: 3}
+  m_Name: RiftCore
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzDirectionalSpriteSet
+  clips:
+  - action: Idle
+    direction: None
+    frames:
+    - {fileID: 1979775015, guid: c9fd0daded1d36c4782093d944c87435, type: 3}
+    - {fileID: -170769137, guid: c9fd0daded1d36c4782093d944c87435, type: 3}
+    - {fileID: -1374915736, guid: c9fd0daded1d36c4782093d944c87435, type: 3}
+    - {fileID: 851593641, guid: c9fd0daded1d36c4782093d944c87435, type: 3}
+    framesPerSecond: 7
+    loop: 1

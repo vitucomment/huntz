@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1926865815662934716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5118630149937469023}
+  - component: {fileID: 1853634155203497120}
+  - component: {fileID: 8922110431706273633}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5118630149937469023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926865815662934716}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8879402454698058539}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &1853634155203497120
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926865815662934716}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.9
+  m_Radius: 0.34
+  m_SlopeLimit: 48
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.035
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!114 &8922110431706273633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926865815662934716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f91cb669550c64bb590d275dd0b45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzArpg3DPlayerController
+  moveSpeed: 4.8
+  sprintMultiplier: 1.55
+  acceleration: 34
+  deceleration: 42
+  attackMoveMultiplier: 0.62
+  dodgeSpeed: 12.5
+  dodgeCooldown: 0.4
+  maxStamina: 100
+  sprintStaminaPerSecond: 22
+  dodgeStaminaCost: 28
+  staminaRegenPerSecond: 34
+  staminaRegenDelay: 0.45
+  minimumStaminaToSprint: 12
+  attackInputBuffer: 0.16
+  dodgeInvulnerabilityTail: 0.08
+  facingTurnSpeed: 1080
+  attackRange: 1.65
+  interactionRange: 2.5
+  attackDamage: 1
+  maxHealth: 5
+  rig: {fileID: 135245134885448215}
+  appearance: {fileID: 9076811101770330943}
+  cameraFollow: {fileID: 0}
+--- !u!1001 &6666554497738299127
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5118630149937469023}
+    m_Modifications:
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985299957445504645, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7445bb43c3900694fb9696c474895910, type: 2}
+    - target: {fileID: 9126156801975160131, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+      propertyPath: m_Name
+      value: HumanoidRig
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+--- !u!114 &135245134885448215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6729546922233380064, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+  m_PrefabInstance: {fileID: 6666554497738299127}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58ae9359e22af947a62c692c235fbfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzArpg3DRig
+--- !u!4 &8879402454698058539 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2863623618975970780, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+  m_PrefabInstance: {fileID: 6666554497738299127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9076811101770330943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2410292651999815112, guid: 86ad1201e52ef9647b1a8b852e1467b8, type: 3}
+  m_PrefabInstance: {fileID: 6666554497738299127}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea909afbe9fa6964c9425ce21003dfc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzArpg3DAppearance

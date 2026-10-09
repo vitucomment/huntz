@@ -1,0 +1,27 @@
+{
+  "name": "Hero_Idle_NorthWest",
+  "provider": "PixelLab animate_image",
+  "created": "2026-10-06",
+  "frame_count": 4,
+  "source_frame_size": [
+    104,
+    96
+  ],
+  "integer_scale": 2,
+  "ground_line": 93,
+  "fps": 8,
+  "base_sheet": "Assets/Huntz/Art/Final/Characters/Hero/Sheets/Hero_Idle_8D.png",
+  "source_sheet": "Assets/Huntz/Art/Source/Characters/Hero/Hero_Idle_8D_Reviewed.png",
+  "final_sheet": "Assets/Huntz/Art/Final/Characters/Hero/Sheets/Hero_Idle_8D.png",
+  "directions": [
+    {
+      "direction": "NorthWest",
+      "folder": "Idle_NorthWest",
+      "reference": "Reference_NorthWest_Corrected.png",
+      "job_id": "3e660a2e-0987-434f-a6fd-0324dac49128",
+      "seed": 710632,
+      "prompt": "Seamless subtle idle loop standing still, facing NORTHWEST toward upper left away from viewer, nose on LEFT. Keep this exact character, back view, weapon, clothing and facing. Feet stay planted at the same positions. Gentle breathing in shoulders and one pixel cloth motion, no walking, no turning, no rotation, no sliding, fixed camera, transparent background.",
+      "download_url": "https://api.pixellab.ai/mcp/images/3e660a2e-0987-434f-a6fd-0324dac49128/download?index={index}"
+    }
+  ]
+}

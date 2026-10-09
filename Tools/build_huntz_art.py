@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import math
 import random
 import shutil
@@ -11,7 +12,7 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageOps
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ART = ROOT / "Assets/HuntzSlice/Art/Final"
+ART = ROOT / "Assets/Huntz/Art/Final"
 SHARED = ART / "Shared"
 TERRAIN = SHARED / "Terrain"
 PROPS = SHARED / "Props"
@@ -20,14 +21,16 @@ UI = SHARED / "UI"
 HERO = ART / "Characters/Hero/Sheets"
 NPC = ART / "Characters/NPC/Sheets"
 CREATURES = ART / "Characters/Creatures/Sheets"
-SLIME_SOURCE = ART / "Characters/Creatures/AshSlime_Source.png"
-WARDEN_SOURCE = ART / "Characters/Creatures/RiftWarden_Source.png"
-HERO_SOURCE = ROOT / "Assets/HuntzSlice/Art/Drafts/Hero/Hero_Idle_8D_Source.png"
+SLIME_SOURCE = ROOT / "Assets/Huntz/Art/Source/Characters/Creatures/AshSlime_Source.png"
+WARDEN_SOURCE = ROOT / "Assets/Huntz/Art/Source/Characters/Creatures/RiftWarden_Source.png"
+HERO_SOURCE = ROOT / "Assets/Huntz/Art/Source/Characters/Hero/Hero_Idle_8D_Source.png"
+HERO_WALK_SOURCE = ROOT / "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Hero_Walk_8D_Source.png"
+HERO_IDLE_REVIEWED = ROOT / "Assets/Huntz/Art/Source/Characters/Hero/Hero_Idle_8D_Reviewed.png"
 HERO_FINAL = HERO / "Hero_Idle_8D.png"
 
 INK = "#211d2b"
 INK_SOFT = "#342c3a"
-HERO_SOURCE_FINAL = ROOT / "Assets/HuntzSlice/Art/Final/Characters/Hero/Sheets/Hero_Idle_8D.png"
+HERO_SOURCE_FINAL = ROOT / "Assets/Huntz/Art/Final/Characters/Hero/Sheets/Hero_Idle_8D.png"
 
 
 def rgba(hex_color: str, alpha: int = 255) -> tuple[int, int, int, int]:
@@ -420,30 +423,15 @@ def armed_idle(rows: list[list[Image.Image]]) -> Image.Image:
     return sheet
 
 
-def make_walk(rows: list[list[Image.Image]]) -> Image.Image:
-    cell_w, cell_h = rows[0][0].size
-    sheet = Image.new("RGBA", (cell_w * 6, cell_h * 8), (0, 0, 0, 0))
-    phases = (-4, 0, 4, 0, -4, 0)
-    for direction, idle_frames in enumerate(rows):
-        for frame_no, shift in enumerate(phases):
-            source = idle_frames[frame_no % 4]
-            output = Image.new("RGBA", source.size, (0, 0, 0, 0))
-            upper_mask = Image.new("L", source.size, 0)
-            ImageDraw.Draw(upper_mask).rectangle((0, 0, cell_w - 1, 133), fill=255)
-            output.paste(source, (0, 0), upper_mask)
-            left_mask = Image.new("L", source.size, 0)
-            ImageDraw.Draw(left_mask).rectangle((0, 128, 135, cell_h - 1), fill=255)
-            right_mask = Image.new("L", source.size, 0)
-            ImageDraw.Draw(right_mask).rectangle((136, 128, cell_w - 1, cell_h - 1), fill=255)
-            left = Image.new("RGBA", source.size, (0, 0, 0, 0))
-            right = Image.new("RGBA", source.size, (0, 0, 0, 0))
-            left.paste(source, (shift, -1 if shift > 0 else 0), left_mask)
-            right.paste(source, (-shift, -1 if shift < 0 else 0), right_mask)
-            output.alpha_composite(left)
-            output.alpha_composite(right)
-            # The blade follows the hands through the walk cycle.
-            add_pixel_sword(output, direction, swing_degrees=(-10, 0, 10, 0, -10, 0)[frame_no])
-            sheet.alpha_composite(output, (frame_no * cell_w, direction * cell_h))
+def make_walk() -> Image.Image:
+    # Keep the reviewed limb poses. Translating pieces of Idle produces sliding,
+    # and must never silently replace the authored animation on a full rebuild.
+    if not HERO_WALK_SOURCE.exists():
+        raise FileNotFoundError("Import the Hero WalkCycle manifest before rebuilding hero art.")
+    with Image.open(HERO_WALK_SOURCE) as source:
+        sheet = source.convert("RGBA")
+    if sheet.size != (208 * 8, 192 * 8):
+        raise ValueError(f"Hero Walk requires eight 208 x 192 frames per direction: {sheet.size}")
     return sheet
 
 
@@ -505,16 +493,24 @@ def make_death(rows: list[list[Image.Image]]) -> Image.Image:
     for direction, idle_frames in enumerate(rows):
         for frame_no, angle in enumerate(angles):
             frame = idle_frames[frame_no % 4]
-            pivot = (cell_w // 2, cell_h - 8)
-            rotated = frame.rotate(angle, resample=Image.Resampling.NEAREST, center=pivot)
+            rotated = frame.rotate(angle, resample=Image.Resampling.NEAREST, expand=True)
+            bounds = rotated.getchannel("A").getbbox()
+            if bounds is None:
+                continue
+            rotated = rotated.crop(bounds)
             if frame_no > 4:
-                rotated = rotated.resize((cell_w, int(cell_h * (1 - (frame_no - 4) * 0.045))), Image.Resampling.NEAREST)
-                canvas = Image.new("RGBA", (cell_w, cell_h), (0, 0, 0, 0))
-                canvas.alpha_composite(rotated, (0, cell_h - rotated.height))
-                rotated = canvas
+                scale = 1 - (frame_no - 4) * 0.045
+                rotated = rotated.resize((max(1, round(rotated.width * scale)),
+                                          max(1, round(rotated.height * scale))), Image.Resampling.NEAREST)
+            fit = min(1.0, (cell_w - 12) / rotated.width, (cell_h - 12) / rotated.height)
+            if fit < 1.0:
+                rotated = rotated.resize((max(1, round(rotated.width * fit)),
+                                          max(1, round(rotated.height * fit))), Image.Resampling.NEAREST)
+            canvas = Image.new("RGBA", (cell_w, cell_h), (0, 0, 0, 0))
+            canvas.alpha_composite(rotated, ((cell_w - rotated.width) // 2, cell_h - 8 - rotated.height))
             if frame_no == 7:
-                rotated.putalpha(rotated.getchannel("A").point(lambda value: int(value * 0.64)))
-            sheet.alpha_composite(rotated, (frame_no * cell_w, direction * cell_h))
+                canvas.putalpha(canvas.getchannel("A").point(lambda value: int(value * 0.64)))
+            sheet.alpha_composite(canvas, (frame_no * cell_w, direction * cell_h))
     return sheet
 
 
@@ -553,22 +549,36 @@ def make_npc_variants(rows: list[list[Image.Image]]) -> None:
         save(sheet, NPC / f"{name}_Idle_8D.png")
 
 
-def make_hero_sheets() -> None:
+def load_hero_rows() -> list[list[Image.Image]]:
     if not HERO_SOURCE.exists() and HERO_FINAL.exists():
         HERO_SOURCE.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(HERO_FINAL, HERO_SOURCE)
     if not HERO_SOURCE.exists():
         raise FileNotFoundError(f"Missing the approved warrior sheet: {HERO_SOURCE}")
     original = Image.open(HERO_SOURCE).convert("RGBA")
-    rows = extract_hero_cells(original)
+    return extract_hero_cells(original)
+
+
+def make_hero_sheets() -> None:
+    rows = load_hero_rows()
     HERO.mkdir(parents=True, exist_ok=True)
-    save(armed_idle(rows), HERO_FINAL)
-    save(make_walk(rows), HERO / "Hero_Walk_8D.png")
+    if HERO_IDLE_REVIEWED.exists():
+        with Image.open(HERO_IDLE_REVIEWED) as reviewed_idle:
+            save(reviewed_idle.convert("RGBA"), HERO_FINAL)
+    else:
+        save(armed_idle(rows), HERO_FINAL)
+    save(make_walk(), HERO / "Hero_Walk_8D.png")
     save(make_attack(rows), HERO / "Hero_Attack_8D.png")
     save(make_dodge(rows), HERO / "Hero_Dodge_8D.png")
     save(make_hurt(rows), HERO / "Hero_Hurt_8D.png")
     save(make_death(rows), HERO / "Hero_Death_8D.png")
     make_npc_variants(rows)
+
+
+def make_hero_death_sheet() -> None:
+    HERO.mkdir(parents=True, exist_ok=True)
+    save(make_death(load_hero_rows()), HERO / "Hero_Death_8D.png")
+    print(f"Generated {HERO / 'Hero_Death_8D.png'}")
 
 
 def make_slime_fallback() -> None:
@@ -711,4 +721,12 @@ def build() -> None:
 
 
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser(description="Build the Huntz pixel art asset pack.")
+    parser.add_argument("--only", choices=("hero-death", "hero-walk"), help="Regenerate only one targeted asset.")
+    args = parser.parse_args()
+    if args.only == "hero-death":
+        make_hero_death_sheet()
+    elif args.only == "hero-walk":
+        save(make_walk(), HERO / "Hero_Walk_8D.png")
+    else:
+        build()

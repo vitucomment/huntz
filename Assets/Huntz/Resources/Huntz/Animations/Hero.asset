@@ -1,0 +1,565 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d71767083335f0468db64e884beee09, type: 3}
+  m_Name: Hero
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzDirectionalSpriteSet
+  clips:
+  - action: Idle
+    direction: South
+    frames:
+    - {fileID: -1755556854, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -2044380576, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -730707736, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 1253472035, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Idle
+    direction: SouthWest
+    frames:
+    - {fileID: 1325846606, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 219980465, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -590320636, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 528183119, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Idle
+    direction: West
+    frames:
+    - {fileID: -367394557, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -1289846015, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 1326408801, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -1091785625, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Idle
+    direction: NorthWest
+    frames:
+    - {fileID: -768803235, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 1134265055, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 61180291, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 498784418, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Idle
+    direction: North
+    frames:
+    - {fileID: 1455288398, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 737431214, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 1380950169, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 528521036, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Idle
+    direction: NorthEast
+    frames:
+    - {fileID: 242502505, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -1471087272, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 844609379, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 1266057240, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Idle
+    direction: East
+    frames:
+    - {fileID: -1687915256, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 1919870238, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: 955381168, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -1320703411, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Idle
+    direction: SouthEast
+    frames:
+    - {fileID: -422146160, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -1530209892, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -1458432985, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    - {fileID: -1845593352, guid: 9d2beee90ee12194fb14b72982b3af14, type: 3}
+    framesPerSecond: 8
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: South
+    frames:
+    - {fileID: -797878455, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -975244687, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 143683441, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1744628829, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1502215993, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1050247913, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1003523359, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 2029421691, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: SouthWest
+    frames:
+    - {fileID: 2129021103, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -114420281, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -155064362, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 2108532628, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -953506726, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -2075513148, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -90374527, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1277541130, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: West
+    frames:
+    - {fileID: 776831079, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -2122191630, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1145052162, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -898499440, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1123965201, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1047776360, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -75820412, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1834950983, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: NorthWest
+    frames:
+    - {fileID: -694192065, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1308228568, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1231616755, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -760029559, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1855910640, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1294636518, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1454004382, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1298756264, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: North
+    frames:
+    - {fileID: 1923870796, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1462738482, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -240832671, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1460222114, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1678354253, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -986312761, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1645395765, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -2111732794, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: NorthEast
+    frames:
+    - {fileID: -2107776034, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 641815540, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -812108847, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1378709315, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1858707660, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1497677950, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 2111147617, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1845039834, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: East
+    frames:
+    - {fileID: -1711775172, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -490306050, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -284921074, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 1670318443, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1689214052, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 468002323, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 89223966, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: 403107667, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Walk
+    direction: SouthEast
+    frames:
+    - {fileID: -98423204, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1243770981, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -644248456, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -64233588, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1072312924, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1948486985, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1350140981, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    - {fileID: -1455648272, guid: 536fa7ba1dc0e5a4fa0448da0be52576, type: 3}
+    framesPerSecond: 14
+    loop: 1
+    usesEquippedWeaponOverlay: 0
+  - action: Attack
+    direction: South
+    frames:
+    - {fileID: -832395852, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 870396038, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 141585044, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1932002544, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1626486870, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 402516990, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    framesPerSecond: 7.142857
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Attack
+    direction: SouthWest
+    frames:
+    - {fileID: -1467547379, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1569394657, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 987288463, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -2031292458, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1089204817, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -213004227, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    framesPerSecond: 7.142857
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Attack
+    direction: West
+    frames:
+    - {fileID: 416211991, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1321915986, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 868824431, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1188777822, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 456066006, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -754871785, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    framesPerSecond: 7.142857
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Attack
+    direction: NorthWest
+    frames:
+    - {fileID: 948910370, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -41034852, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1474641232, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 299287647, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1676071489, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1968785686, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    framesPerSecond: 7.142857
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Attack
+    direction: North
+    frames:
+    - {fileID: 918896886, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -47638116, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 382680352, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 2079312756, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1786458974, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1103389147, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    framesPerSecond: 7.142857
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Attack
+    direction: NorthEast
+    frames:
+    - {fileID: -1747455908, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1105652216, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 889318629, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1678447884, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1030608355, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 724398534, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    framesPerSecond: 7.142857
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Attack
+    direction: East
+    frames:
+    - {fileID: -1950611438, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: 475878428, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -287902089, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -1756764377, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -1000663963, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -2057819740, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: 1536056536, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -2108695012, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -2086218906, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: 1248912193, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -835490500, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    - {fileID: -220959460, guid: d15e61fd53d94c6d8243fdf448cb2780, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Attack
+    direction: SouthEast
+    frames:
+    - {fileID: -1330448605, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -180949099, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 1486827617, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1558816415, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: 879393795, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    - {fileID: -1496387837, guid: 5b08a98022995714cb1d7157be725d04, type: 3}
+    framesPerSecond: 7.142857
+    loop: 0
+    usesEquippedWeaponOverlay: 1
+  - action: Dodge
+    direction: South
+    frames:
+    - {fileID: 237622654, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 63988225, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -447699556, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1122268975, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Dodge
+    direction: SouthWest
+    frames:
+    - {fileID: -282352974, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1282809807, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1544800200, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 2101168400, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Dodge
+    direction: West
+    frames:
+    - {fileID: -2003933466, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1480977871, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1763795676, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 95659205, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Dodge
+    direction: NorthWest
+    frames:
+    - {fileID: -797648606, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 144697656, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 341499532, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -32119282, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Dodge
+    direction: North
+    frames:
+    - {fileID: -457928098, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1149532214, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -1320383954, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -545342734, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Dodge
+    direction: NorthEast
+    frames:
+    - {fileID: -796858796, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -1661272614, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1936169384, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 436891438, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Dodge
+    direction: East
+    frames:
+    - {fileID: -897744437, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -1444449647, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -1503410264, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -976943103, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Dodge
+    direction: SouthEast
+    frames:
+    - {fileID: 920831074, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: -1272765827, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 1806314533, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    - {fileID: 313140507, guid: b42231673bc96b8469ee3e0029918f9f, type: 3}
+    framesPerSecond: 24
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: South
+    frames:
+    - {fileID: 1625850809, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: -1696519226, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: SouthWest
+    frames:
+    - {fileID: -944393824, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: 741436334, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: West
+    frames:
+    - {fileID: 158776880, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: 919501018, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: NorthWest
+    frames:
+    - {fileID: -1261656174, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: -931134474, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: North
+    frames:
+    - {fileID: -1035620282, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: -1536587785, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: NorthEast
+    frames:
+    - {fileID: -1650086099, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: 1937688092, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: East
+    frames:
+    - {fileID: -390830273, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: 826156776, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Hurt
+    direction: SouthEast
+    frames:
+    - {fileID: 665964972, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    - {fileID: -1067982632, guid: 2e8dec71162b3334692d4233e466a2bb, type: 3}
+    framesPerSecond: 14
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: South
+    frames:
+    - {fileID: 1934593540, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 570128882, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -258642328, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1578983644, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1054199632, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 503057512, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 560819020, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 813443243, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: SouthWest
+    frames:
+    - {fileID: 2098370698, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 2002377489, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1276225960, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1503619499, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -775576262, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 547445297, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 496915590, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1853601155, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: West
+    frames:
+    - {fileID: -21484709, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -447318203, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -188500646, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1330132867, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -807236883, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -587192415, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -952220826, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 677928424, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: NorthWest
+    frames:
+    - {fileID: 1133203055, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 751923362, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1778054047, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1006988768, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1572138171, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -646336447, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -776871333, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1776905335, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: North
+    frames:
+    - {fileID: -1300917038, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1263729430, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1454349335, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1141180236, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -922496427, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1652003124, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 185016613, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1236500015, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: NorthEast
+    frames:
+    - {fileID: 1414839756, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1408493006, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -344284018, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -982037107, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1075270935, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1552294062, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1898014949, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 165368305, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: East
+    frames:
+    - {fileID: -527212128, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1518044656, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1985129931, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1946976222, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -1927186155, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1765043809, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -476006498, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 2137843704, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0
+  - action: Death
+    direction: SouthEast
+    frames:
+    - {fileID: -113527305, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 776289957, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1107653911, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -594059492, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1694734087, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -192145256, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: 1764665745, guid: 5997da3331da671449973ac127610c57, type: 3}
+    - {fileID: -2030522498, guid: 5997da3331da671449973ac127610c57, type: 3}
+    framesPerSecond: 12
+    loop: 0
+    usesEquippedWeaponOverlay: 0

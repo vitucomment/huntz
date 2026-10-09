@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127d1fe2e0fc47cd975155b1a97f021a, type: 3}
+  m_Name: StarterSword
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzWeaponDefinition
+  displayName: Espada de treino
+  sprite: {fileID: 21300000, guid: 0d56235ba2e5493fb533ea30bf977d96, type: 3}
+  damageBonus: 0
+  reachBonus: 0
+  widthBonus: 0

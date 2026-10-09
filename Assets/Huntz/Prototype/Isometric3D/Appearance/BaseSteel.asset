@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218982f8a66969e418c929bba3a5c7ba, type: 3}
+  m_Name: BaseSteel
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzArpg3DAppearanceProfile
+  skin: {r: 0.82, g: 0.57, b: 0.39, a: 1}
+  cloth: {r: 0.18, g: 0.36, b: 0.52, a: 1}
+  leather: {r: 0.14, g: 0.09, b: 0.06, a: 1}
+  metal: {r: 0.62, g: 0.72, b: 0.78, a: 1}
+  hair: {r: 0.12, g: 0.08, b: 0.06, a: 1}
+  accent: {r: 0.9, g: 0.54, b: 0.12, a: 1}

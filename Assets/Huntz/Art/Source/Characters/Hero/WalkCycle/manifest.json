@@ -1,0 +1,78 @@
+{
+  "name": "Hero_Walk_8D",
+  "provider": "PixelLab animate_image",
+  "created": "2026-10-06",
+  "frame_count": 8,
+  "source_frame_size": [
+    104,
+    96
+  ],
+  "integer_scale": 2,
+  "ground_line": 93,
+  "fps": 14,
+  "source_sheet": "Assets/Huntz/Art/Source/Characters/Hero/WalkCycle/Hero_Walk_8D_Source.png",
+  "final_sheet": "Assets/Huntz/Art/Final/Characters/Hero/Sheets/Hero_Walk_8D.png",
+  "directions": [
+    {
+      "direction": "East",
+      "job_id": "c43ccf43-3079-45b2-be75-5e8f0b5c0dfc",
+      "seed": 710610,
+      "prompt_summary": "Eight-frame walk in place, East/right facing, alternating legs, knee bends and opposite arm swing; preserve the supplied character and transparent canvas. Exact pilot prompt was not retained.",
+      "download_url": "https://api.pixellab.ai/mcp/images/c43ccf43-3079-45b2-be75-5e8f0b5c0dfc/download?index={index}"
+    },
+    {
+      "direction": "South",
+      "job_id": "2f5e1efb-0ef9-4eed-b89c-5ad406560f79",
+      "seed": 710620,
+      "prompt": "Seamless looping walk in place facing south, toward the viewer. Clear alternating strides: left foot reaches forward as right foot pushes back, knees bend through the passing pose, then opposite legs exchange. Arms visibly swing opposite the legs while the sword follows the hand. Small natural torso bob. Keep the original facing and stay centered, no sliding across the canvas, no camera movement, feet return to the same ground line. Exaggerate leg separation enough to read at small game scale.",
+      "download_url": "https://api.pixellab.ai/mcp/images/2f5e1efb-0ef9-4eed-b89c-5ad406560f79/download?index={index}"
+    },
+    {
+      "direction": "SouthWest",
+      "job_id": "5eccb561-5a80-41eb-9acc-8a4cea304752",
+      "seed": 710621,
+      "prompt": "Seamless looping walk in place facing southwest, toward the lower left and the viewer. Clear alternating strides: left foot reaches forward as right foot pushes back, knees bend through the passing pose, then opposite legs exchange. Arms visibly swing opposite the legs while the sword follows the hand. Small natural torso bob. Keep the original facing and stay centered, no sliding across the canvas, no camera movement, feet return to the same ground line. Exaggerate leg separation enough to read at small game scale.",
+      "download_url": "https://api.pixellab.ai/mcp/images/5eccb561-5a80-41eb-9acc-8a4cea304752/download?index={index}"
+    },
+    {
+      "direction": "West",
+      "job_id": "e82e79a0-e012-48ab-b517-ab452c23e5a0",
+      "seed": 710622,
+      "prompt": "Seamless looping walk in place facing west, to the left. Clear alternating strides: left foot reaches forward as right foot pushes back, knees bend through the passing pose, then opposite legs exchange. Arms visibly swing opposite the legs while the sword follows the hand. Small natural torso bob. Keep the original facing and stay centered, no sliding across the canvas, no camera movement, feet return to the same ground line. Exaggerate leg separation enough to read at small game scale.",
+      "download_url": "https://api.pixellab.ai/mcp/images/e82e79a0-e012-48ab-b517-ab452c23e5a0/download?index={index}"
+    },
+    {
+      "direction": "NorthWest",
+      "job_id": "2b1d662b-ee0a-49ff-beb5-235ce5119f44",
+      "seed": 710631,
+      "prompt": "Seamless looping walk IN PLACE facing NORTHWEST toward UPPER LEFT away from camera. Maintain the input's back view and LEFT-facing nose throughout every frame. Clear alternating legs, left foot reaches forward while right pushes back, bent knees through passing pose then exchange support. Opposite arm swing, small torso bob. Same warrior, clothes, weapon, size and centered canvas. No turning right, no camera movement, transparent background.",
+      "reference_edit_job_id": "3fd0fd53-3ed6-49e6-8669-68457bcc9d61",
+      "reference": "Reference_NorthWest_Corrected.png",
+      "folder": "NorthWest_Corrected",
+      "rejected_job_id": "3900b173-08a2-4bbd-9b53-9e0418ee375a",
+      "rejection_reason": "Original Idle reference faces right; retained under NorthWest only as source history.",
+      "download_url": "https://api.pixellab.ai/mcp/images/2b1d662b-ee0a-49ff-beb5-235ce5119f44/download?index={index}"
+    },
+    {
+      "direction": "North",
+      "job_id": "80c7f036-ac0f-40b3-b8ae-9f45d5af9822",
+      "seed": 710624,
+      "prompt": "Seamless looping walk in place facing north, away from the viewer, keeping the back visible. Clear alternating strides: left foot reaches forward as right foot pushes back, knees bend through the passing pose, then opposite legs exchange. Arms visibly swing opposite the legs while the sword follows the hand. Small natural torso bob. Keep the original facing and stay centered, no sliding across the canvas, no camera movement, feet return to the same ground line. Exaggerate leg separation enough to read at small game scale.",
+      "download_url": "https://api.pixellab.ai/mcp/images/80c7f036-ac0f-40b3-b8ae-9f45d5af9822/download?index={index}"
+    },
+    {
+      "direction": "NorthEast",
+      "job_id": "ecf85b90-547c-4b30-9a39-a4f2cdafb493",
+      "seed": 710625,
+      "prompt": "Seamless looping walk in place facing northeast, toward the upper right away from the viewer. Clear alternating strides: left foot reaches forward as right foot pushes back, knees bend through the passing pose, then opposite legs exchange. Arms visibly swing opposite the legs while the sword follows the hand. Small natural torso bob. Keep the original facing and stay centered, no sliding across the canvas, no camera movement, feet return to the same ground line. Exaggerate leg separation enough to read at small game scale.",
+      "download_url": "https://api.pixellab.ai/mcp/images/ecf85b90-547c-4b30-9a39-a4f2cdafb493/download?index={index}"
+    },
+    {
+      "direction": "SouthEast",
+      "job_id": "f3e63924-6c6b-48d7-bca9-55033e6a8712",
+      "seed": 710626,
+      "prompt": "Seamless looping walk in place facing southeast, toward the lower right and the viewer. Clear alternating strides: left foot reaches forward as right foot pushes back, knees bend through the passing pose, then opposite legs exchange. Arms visibly swing opposite the legs while the sword follows the hand. Small natural torso bob. Keep the original facing and stay centered, no sliding across the canvas, no camera movement, feet return to the same ground line. Exaggerate leg separation enough to read at small game scale.",
+      "download_url": "https://api.pixellab.ai/mcp/images/f3e63924-6c6b-48d7-bca9-55033e6a8712/download?index={index}"
+    }
+  ]
+}

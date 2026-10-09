@@ -1,231 +1,155 @@
 # Handoff — Huntz
 
-**Última atualização:** 2026-10-06 · **Por:** Codex
-**Próximo agente:** leia `AGENTS.md` primeiro, depois este arquivo. Atualize este documento ao final da sua sessão.
+Atualizado em 2026-10-09.
 
-## Resumo
+## Retorno mais recente do dono — 2026-10-09
 
-O dono do projeto (Victor) quer fazer **Huntz, um RPG isométrico 2D** na Unity, desenvolvido com agentes de IA
-(Claude Code e Codex) controlando o Editor via MCP. O trabalho evoluiu da exploração inicial para uma prova de conceito
-vertical isolada:
+- No Play Mode, o dono testou e validou andar, correr, esquiva, ataque, monstros, dano e morte. É uma validação manual relatada pelo dono; não foi repetida nesta sessão.
+- A interação E e uma Hunt completa de ponta a ponta não foram mencionadas nesse retorno, então continuam pendentes de validação.
 
-1. Configurou-se a ponte agente ↔ Unity Editor (MCP for Unity + rede WSL).
-2. Criou-se uma demo de plataforma 2D para demonstrar as capacidades.
-3. Criou-se um **conceito jogável de RPG isométrico** — base de referência para o jogo.
-4. Em `Assets/HuntzSlice/`, a prova avançou para combate, rota bifurcada, chefe e ciclo de sessão MainLand → hunt →
-   retorno, com recompensa e melhoria temporárias.
+## Pedido e diagnóstico atual
 
-Nada disso é arte ou arquitetura final: é um protótipo para validar visão e fluxo de trabalho.
+Huntz agora é um RPG de ação isométrico 3D inspirado no gênero de Diablo/Path of Exile. A antiga direção de personagem e sprites 2D foi aposentada; não a use como base para gameplay, rig ou arte. A produção de arte 3D continua pausada; evoluir o motor e o graybox com Unity e ferramentas já instaladas.
 
-## O que foi feito
+O único fluxo ativo é o piloto 3D. Os arquivos 2D que ainda estão no repositório são históricos e não devem orientar o design novo.
 
-### 1. Infraestrutura
-- Projeto Unity criado em `C:\Users\victo\Documents\Huntz\My project` (template 3D URP, Unity 6000.6.4f1).
-- Pacote **MCP for Unity 10.3.0** instalado no projeto.
-- `C:\Users\victo\.wslconfig`: adicionado `networkingMode=mirrored` (backup `.wslconfig.bak`) para o WSL acessar o
-  servidor em `localhost:8080`.
-- Claude Code: servidor `unityMCP` registrado (HTTP, escopo local de `/home/victor/workspace/workspace/Huntz`).
-- Codex: **ainda não configurado** — instruções em `docs/UNITY_MCP.md`.
-- Detalhes e receitas: `docs/UNITY_MCP.md`.
+## Plano passo a passo — refino do piloto 3D
 
-### 2. Demo de plataforma 2D (referência, não é o jogo)
-- Cena `Assets/Scenes/Huntz2DDemo.unity`, gerada por `Assets/Editor/HuntzDemoBuilder.cs`
-  (menu **Huntz → Build 2D Demo Scene**).
-- Scripts em `Assets/Scripts/`: `PlayerController2D` (coyote time, jump buffer, pulo variável), `CameraFollow2D`,
-  `Coin`, `Goal`, `GameManager` (HUD `OnGUI`, R reinicia).
-- Testado: compila, jogador cai e repousa no chão, sem erros.
+As etapas são sequenciais. Cada uma precisa compilar e passar sua verificação manual no Unity antes de começarmos a próxima. Arte final, compras e geração de assets ficam fora do plano por enquanto.
 
-### 3. Conceito de RPG isométrico (foco)
-Cena `Assets/Scenes/HuntzIsoRPG.unity` (build index 1), gerada por `Assets/IsoRPG/Editor/HuntzIsoBuilder.cs`
-(menu **Huntz → Build Isometric RPG Concept**).
+0. **Linha de base — conferida.** Instância Unity 6000.6.4f1, cena 3D correta e limpa, Console sem entradas de erro/aviso e `Isometric3DARPGPilot` como única cena de build.
+1. **Chão, colisões e locomoção — ativa.** Separar colisão da apresentação das ilhas; conferir personagem apoiado no chão, bordas e objetos sólidos; validar caminhada, corrida, parada, rotação e transferência Mainland ↔ Hunt. Critério de saída: compilação limpa e passagem manual sem atravessar o chão/obstáculos, cair ao se mover em área válida ou perder o controle nas transições.
+2. **Rig e animação.** Consolidar poses Idle/Walk/Run e animações de ação no rig reutilizável, manter raiz/pés e socket estáveis e verificar a leitura visual na câmera de jogo. Preservar Generic nos clips de curva Transform; só ativar retarget Humanoid depois que os clips estiverem convertidos e validados.
+3. **Contrato de combate.** Formalizar preparação → impacto → recuperação; sincronizar pose, espada no `WeaponSocket`, efeito e hit único por alvo. Depois conferir esquiva, invulnerabilidade, dano, reação e morte.
+4. **Cenário e Hunt.** Modularizar arena, colisores, encontros, portais e NPCs para reuso; jogar a Hunt Fácil A1 → saídas → baú/chefe surpresa → C3 → retorno. Critério de saída: caminho acessível, colisões corretas e fluxo concluído no Play Mode.
+5. **Estrutura de runtime.** Desacoplar controles e apresentação da lógica do personagem, centralizar as ações de input e substituir a HUD provisória por interface de jogo, preservando os mesmos comandos.
+6. **Progressão da fatia.** Definir e implementar persistência mínima para recursos, equipamento e progresso antes de ampliar dificuldades, economia ou conteúdo.
+7. **Build e qualidade.** Revisar Console, resoluções, desempenho, configurações de build e uma partida standalone. Só reabrir a produção de arte depois da base aprovada.
 
-| Sistema | Implementação |
-|---|---|
-| Mapa | grade 26x26 de tiles diamante (grama, grama escura, trilha, praça, lago, areia), flores decorativas |
-| Profundidade | `YSort` — ordem de desenho pela posição Y (passa atrás de árvores/casas) |
-| Colisão | árvores (borda da floresta fecha o mapa), pedras, casas, poço, baús, água (`PolygonCollider2D` em losango) |
-| Jogador | `IsoPlayer` — movimento 8 direções (em espaço de tela), ataque em arco na direção, i-frames de 1s com piscar, knockback, morte = respawn na vila |
-| Inimigos | `IsoEnemy` — slimes vagam perto de casa, perseguem (aggro 3, leash 6), dano por contato, flash/atordoamento/knockback ao apanhar. 5 no acampamento NE, 2 no lago, **Slime Rei** (10 HP, dano 2) |
-| Progressão | XP por kill, nível (XP necessário = nível × 4), +2 HP máx por nível, +1 dano a cada nível par |
-| Itens | `IsoChest` — 2 baús (2 e 3 poções); Q cura 5 HP |
-| NPCs | `IsoNPC` — Anciã Ana (missão) e Ferreiro Bruno (dicas), caixa de diálogo |
-| UI | `IsoGame` — HP/XP/nível/poções, prompt "[E] …", mensagens, diálogo, vitória ao matar todos (tudo em `OnGUI`) |
-| Arte | Sprites pixel art finais compartilhados em `Assets/HuntzSlice/Art/Final/`, com prefabs em `Assets/IsoRPG/Prefabs/` |
+### Estado e retomada da etapa 1
 
-**Verificado:** compila sem erros; Play mode sem exceções; jogador nasce na posição esperada; slime causou dano e
-knockback no jogador num teste (contato/dano funcionam); screenshots conferidos.
-**Não verificado:** entrada do teclado (combate pelo jogador, diálogo, baús, poções) — o MCP não simula teclas.
-Primeira coisa a fazer na próxima sessão: pedir ao dono para jogar e reportar.
+- `HuntzIsometric3DPilotBuilder.cs` agora prepara malhas de colisão independentes dos MeshRenderers e inclui `Huntz/Prototype 3D/Refresh Island Collision`, que migra as ilhas da cena existente sem reconstruí-la.
+- Unity 6000.6.4f1 recompilou sem erros/avisos; o método público de atualização foi chamado pelo MCP no Edit Mode e salvou os filhos `Collision` das duas ilhas. A cena confirma `rootCollider=false`, `childMeshCollider=true`, mesh própria e transform local zero nas duas ilhas.
+- No Play Mode, a cápsula do jogador permaneceu apoiada no chão; `CharacterController.Move` bloqueou a parede da oficina (`Sides, Below`) e o pilar da Hunt (`Sides`). Uma sonda vertical no pilar retornou `Below`; os raycasts acertaram o interior e não acertaram pontos externos das duas ilhas. Chamar os interagíveis pelo MCP fez MainLand → Hunt (`(38, 0.05, -0.85)`) → MainLand (`(-2.5, 0.05, -0.8)`).
+- O Editor terminou em Edit Mode, cena salva/limpa e piloto 3D como única entrada de Build Settings. Console final: zero erros e avisos. Não houve build ou teste automatizado.
+- Ainda falta passar WASD, corrida, parada, rotação e E com o Game View em foco. A janela estava sem foco do sistema operacional; o dispositivo recebeu W sintético, mas o `InputAction` permaneceu sem valor, então essa tentativa não confirma nem refuta o comportamento real. Mantenha a etapa 2 bloqueada até observar esses controles manualmente. A execução MCP de `execute_menu_item` só confirmou a tentativa; a migração foi aplicada chamando o método público do builder via `execute_code`.
+- Próxima ação: focar o Game View no Editor, validar WASD/corrida/parada/rotação e a tecla E em Play Mode. Se a passagem funcionar, avançar ao rig/animações; se não, corrigir a entrada ou o movimento antes.
 
-### Bugs corrigidos durante a sessão
-- Slimes do lago nasciam dentro do alcance de aggro do spawn do jogador → movidos para longe.
-- `IsoGame.InDialogue` ficava `true` após domain reload (array null virava vazio) → `[System.NonSerialized]` +
-  checagem de índice.
-- Efeito de golpe (`Slash`) aparecia no editor → renderer desabilitado no builder.
+## Estado funcional de base — primeira Hunt jogável 3D, 2026-10-08
 
-## Estado atual / pontos abertos
+- A cena salva `Assets/Huntz/Prototype/Isometric3D/Scenes/Isometric3DARPGPilot.unity` tem `HuntzArpg3DHuntDirector` no root `Generated 3D ARPG Graybox`. O menu `Huntz/Prototype 3D/Install Hunt Vertical Slice` adiciona somente esse sistema e salva a cena; o builder principal anexa o componente em futuras reconstruções.
+- Interagir com o Portal HZ inicia Hunt 01 Fácil, com mapa lógico conectado 3×3 (A1 entrada, C3 chefe final), gates nas salas adjacentes e revisita de nós já limpos. Tipos não visitados ficam ocultos no minimapa. Inimigos bloqueiam as saídas até serem derrotados.
+- O diretor sorteia uma sala de saque e um chefe surpresa por run. O baú e os encontros concedem fragmentos provisórios; o chefe final encerra e retorna à MainLand. Morrer na Hunt retorna à base depois de 1,4 s, recupera vida/vigor e mantém fragmentos.
+- A Unity recompilou sem erros C#. A cena foi instalada pelo Editor MCP e salva. O Console tem um aviso interno do MCP (`WebSocket is not initialised`), sem erro de compilação. A Hunt ainda não foi jogada por inteiro no Play Mode.
+- Limites conhecidos: todos os nós reutilizam a arena graybox; só a Fácil está ligada. Não há XP/níveis, persistência de carteira, loot equipável, lojas, stash, atributos ou habilidades funcionais. Fragmentos existem somente enquanto o jogador está na sessão.
 
-- A visão inicial do jogo e propostas de mecânicas foram organizadas em [`docs/GDD.md`](GDD.md), a partir de `Anotações.txt`. O documento distingue o que veio das anotações das recomendações ainda não validadas.
+### Validação da Hunt após as etapas de chão e combate
 
-### Prova de conceito vertical — sala de combate
+1. Jogar manualmente Portal → encontros/saídas → baú → chefe surpresa → C3 → MainLand; verificar se cada gate é alcançável, se as colisões da arena não bloqueiam a rota e se a HUD cabe na resolução real.
+2. Testar morte na Hunt e confirmar retorno/cura, depois sair voluntariamente pelo Portal de Retorno.
+3. Corrigir com base na partida e então adicionar o primeiro serviço persistente de progressão/inventário. Manter Medium/Hard, outras classes e sistemas econômicos como roteiro até a Hunt Fácil ficar sólida.
 
-- Conteúdo novo e isolado em `Assets/HuntzSlice/`; o builder fica em `Editor/HuntzSliceBuilder.cs` e usa o menu **Huntz → Build Vertical Slice Room** para salvar `Assets/HuntzSlice/Scenes/HuntzVerticalSlice.unity`.
-- A cena tem uma arena de tiles isométricos 13×13 com quatro limites físicos, o jogador, dois Ash Slimes, câmera ortográfica, HUD de vida e instruções de controle. Os sprites são placeholders gerados pelo builder em `Assets/HuntzSlice/Art/`.
-- O jogador move-se em oito direções projetadas no espaço isométrico, ataca na última direção de movimento com **J/clique esquerdo** e esquiva com **Espaço** (0,16 s de deslocamento e 0,42 s de invulnerabilidade). Ao receber um golpe, há piscar visual e redução de vida; ao chegar a zero, o personagem volta ao início da arena.
-- Os inimigos perseguem o jogador e exibem uma área circular vermelha pulsante por 0,78 s antes de atacar o ponto marcado. Vida, velocidade e tempos ficam ajustáveis nos componentes.
-- A compilação após a última alteração terminou sem erros nem avisos C# novos. O Console manteve os erros `NoSubscription` conhecidos do Unity AI e um aviso `[WebSocket] Unexpected receive error: WebSocket is not initialised` do MCP. A remoção da captura também gerou um aviso do AssetDatabase sobre `Assets/Screenshots.meta`; a pasta e o `.meta` foram removidos e não há captura restante.
-- O MCP abriu a cena em Play Mode e permitiu inspecionar hierarquia, câmera e HUD; a execução foi encerrada e os dois inimigos continuam presentes na cena salva. A captura temporária e sua pasta foram removidas. Durante parte do fluxo, `editor/state` indicou `stale_status`; no fechamento, mostrou `ready_for_tools=true`, sem compilação nem domain reload pendentes.
-- **Falta validar manualmente:** movimento, direção do ataque, esquiva/i-frames e resposta aos sinais dos inimigos. O MCP não envia teclado ou mouse. Para testar, abra `HuntzVerticalSlice.unity`, entre em Play, mova com WASD/setas, ataque com J ou clique esquerdo e pressione Espaço quando a área vermelha aparecer.
-- A cena nova não foi adicionada ao Build Settings; os três índices de build existentes foram mantidos.
+## Incremento mais recente — rig humanoide 3D, 2026-10-08
 
-### Prova de conceito vertical — rota de salas da hunt (Prompt 2)
+- O rig agora tem `LeftToeBase` e `RightToeBase`, com a bota separada em calcanhar e antepé. Walk/Run incluem o rolamento de saída do apoio e a elevação dos dedos no balanço; cada clip tem 61 bindings e 33 amostras por ciclo.
+- `HuntzArpg3DRig` serializa referências estáveis à raiz do esqueleto, quadril, tronco, cabeça, mãos, pés, dedos e `WeaponSocket`. `ValidateRig` checa ossos requeridos, socket na mão direita, controller e Avatars.
+- Dois Avatars são salvos: `Animation/HuntzHumanoid3D_TransformCurves.asset` fica ativo como Generic para manter os clips atuais; `Animation/HuntzHumanoid3D.asset` contém o mapeamento Humanoid para retargeting futuro. Ao ativar o Humanoid, as curvas Transform atuais não acompanharam o ciclo corretamente. Converta os clips antes de trocar o Avatar do Animator.
+- `Huntz/Prototype 3D/Refresh Humanoid Rig Prefab` atualiza só o prefab compartilhado. `Huntz/Prototype 3D/Refresh Locomotion Animations` atualiza os clips e o BlendTree. O builder da cena não foi chamado.
+- Play Mode: 4/4 rigs da cena válidos; Walk exibiu rotação de coxa, joelho, pé e `ToeBase` em diferentes pontos do ciclo. Console final sem erros ou avisos. Editor retornou ao Edit Mode; cena 3D limpa e única cena de Build Settings. Sem build ou testes automatizados.
+- A passada deve ser revisada visualmente em escala normal de jogo. O piloto ainda não tem `SkinnedMeshRenderer` ou modelo importado.
 
-- A mesma cena `Assets/HuntzSlice/Scenes/HuntzVerticalSlice.unity` agora contém uma rota fixa de seis salas, definida em
-  `Assets/HuntzSlice/Editor/HuntzSliceBuilder.cs`: Entrada → Bifurcação → (desvio opcional Ninho de cinzas, com
-  fragmento) ou Trilha principal → Santuário (cura na primeira visita) → Câmara final. A bifurcação e o caminho principal
-  permitem voltar a salas já visitadas.
-- Cada sala fica guardada na hierarquia e só uma é ativada por vez. As passagens aparecem depois que a sala é limpa;
-  salas limpas mantêm o estado, não recriam inimigos, e as recompensas/cura de primeira visita não são repetidas. A sala
-  final encerra a rota de teste com uma mensagem indicando que o chefe fica para uma etapa futura.
-- O HUD mostra vida, sala atual, inimigos restantes, fragmentos e um mapa que revela salas conforme a visita. Controles:
-  WASD/setas, J/clique esquerdo, Espaço, E perto de uma passagem.
-- Corrigido o registro de salas runtime em `HuntzSliceHunt`: dicionário/lista/array de runtime são explicitamente não
-  serializados e reconstituídos, evitando consulta a estado ausente após reload. Jogador e hunt também restabelecem seus
-  singletons na ativação/entrada em Play; o HUD busca componentes ativos como fallback. O reset de inimigos ativos evita
-  contagem residual entre execuções.
-- **Verificado:** compilação final terminou; o builder salvou novamente a cena em Edit Mode; o Play Mode abriu na Entrada
-  com dois inimigos, HUD/mapa visíveis e Console com 0 erros/avisos no último check. Captura de inspeção em
-  `Library/HuntzSliceCaptures/stage2-verified-start.png` (não é arte final). A cena anterior `HuntzIsoRPG` e os Build
-  Settings não foram alterados.
-- Em uma execução anterior, a inspeção MCP encontrou `CurrentRoomId=5`, `RouteComplete=true` e 0 inimigos. Como o MCP
-  não simula teclado e não sabemos se houve input manual do dono durante a sessão, isso fica registrado como estado
-  observado, não como teste automatizado da travessia completa.
-- **Ainda requer teste manual:** derrotar os Ash Slimes, aproximar-se e usar E nas passagens, testar o desvio/recompensa,
-  retornar sem respawn, conferir a cura do Santuário e concluir a rota. No momento o Editor está em Play Mode na sala
-  inicial, pronto para esse teste.
-- A primeira tentativa de executar o builder ocorreu durante uma transição de saída do Play Mode e o Unity a rejeitou;
-  após o Editor ficar ocioso, o builder foi executado em Edit Mode e confirmou o salvamento. Não é necessário tratar isso
-  como erro atual do projeto.
+## Base de locomoção consolidada — 2026-10-08
 
-### Prova de conceito vertical — chefe final (Prompt 3)
+- O refresh foi executado com a ponte Unity MCP na cena `Isometric3DARPGPilot`; nenhum builder de cena foi chamado. Foram confirmados os caminhos de joelho/pé na hierarquia e corrigidos no builder.
+- Walk e Run repetem e têm 53 curvas cada, incluindo quadril, coxas, joelhos, pés, braços e tronco. Cada ciclo tem 33 amostras. O BlendTree contém Idle/Walk/Run com `GaitRate` como parâmetro de velocidade.
+- O ciclo usa passada completa com apoio e balanço, flexão de joelho no balanço e rotação compensatória do pé durante o apoio. A corrida agora usa `GaitRate` de 1,2 na velocidade máxima, reduzindo o descompasso que fazia os pés passarem pelo chão rápido demais.
+- No Play Mode, uma entrada temporária pelo Input System acionou movimento: Walk chegou a peso 1 com `MoveSpeed=1,00` e `GaitRate=1,30`; Shift mudou para Run com peso 1, `MoveSpeed=1,55` e `GaitRate=1,20`. Foram observados deslocamento, troca do estado, rotação das pernas e compensação do pé. Não foi criada/executada uma suíte de testes.
+- A compilação C# terminou sem erros. Console final após o Play Mode retornou zero erros/avisos; durante um refresh anterior o MCP registrou um aviso interno `[WebSocket] Unexpected receive error: WebSocket is not initialised`. Editor final em Edit Mode, cena 3D ativa e sem alterações salvas. Nenhuma build foi gerada.
+- Esta verificação cobre o rig geométrico graybox. Próximo passo: revisar visualmente a passada na escala normal da Game View e ajustar com base na leitura do dono; o placeholder procedural não equivale à animação final de um personagem 3D rigado.
 
-- A rota e o combate da fase 2 foram confirmados em `Assets/HuntzSlice/`; o protótipo antigo em `Assets/Scenes/` e
-  `Assets/IsoRPG/` não foi sobrescrito. O builder da slice agora coloca o **Guardião da Fenda** apenas na Câmara final.
-- O chefe tem 18 HP provisórios e alterna dois padrões de área, em vez de só acumular vida/dano:
-  - **Investida:** trava a direção do jogador, mostra um corredor laranja/vermelho e um aro no ponto final por 1,1 s;
-    depois avança pelo corredor. Resposta esperada: sair lateralmente ou esquivar para fora da faixa.
-  - **Pulso:** mostra um círculo/aro laranja de 2 unidades de raio por 1,2 s; depois causa dano dentro da área.
-    Resposta esperada: sair do círculo antes do pulso.
-  - Entre padrões, há 0,9 s de recuperação. O HUD do chefe mostra nome, HP atual/máximo e estado/instrução do padrão.
-- **Regras deliberadamente provisórias na fase 3:** cada golpe do chefe causa 2 de dano; vencer concede `1 × Núcleo da
-  Fenda`; morrer encerra a expedição sem a recompensa do chefe. O retorno à MainLand e o reset para nova hunt foram
-  adicionados na fase 4 abaixo. Nenhum desses números/regras foi promovido a decisão do GDD, e não há perda de XP.
-- As telas de vitória e derrota foram verificadas por chamadas de teste MCP aos métodos de dano (não por teclado). As duas
-  notificações visuais foram inspecionadas na Câmara final; a faixa da investida foi ativada diretamente para a captura,
-  e o círculo do pulso foi observado em execução. Isso valida apresentação/transições de estado, **não** valida combate
-  manual, acerto real da investida, esquiva/i-frames nem balanceamento.
-- Para inspecionar o chefe, uma chamada MCP runtime temporária entrou diretamente na sala 5; a chamada não foi salva na
-  cena e não valida o percurso pelas passagens.
-- **Verificado:** compilação após a última edição; builder salvou `HuntzVerticalSlice`; Play Mode via MCP abriu na Entrada
-  com dois inimigos e um único root de sala ativo; inspeção runtime da Câmara final reportou chefe com 18/18 HP e
-  `EnemiesRemaining=1`; Console sem erros/avisos próprios de `HuntzSlice`. Podem aparecer o aviso de WebSocket do MCP e
-  `NoSubscription` do Unity AI, ambos já conhecidos e externos à slice. O Play Mode foi deixado na Entrada.
-- Capturas temporárias de inspeção ficaram em `Library/HuntzSliceCaptures/` (não são assets do jogo):
-  `phase3-charge-visual-1.png`, `phase3-result-win.png`, `phase3-result-loss.png` e `phase3-boss-hud-final.png`.
-- **Teste manual pendente:** fazer a rota até a Câmara final, observar a faixa/aro da investida e o círculo do pulso,
-  esquivar ou sair das áreas antes do impacto, atacar o chefe com J/clique, confirmar barra/recuperação/vitória e repetir
-  ficando nas áreas para confirmar derrota. Instruções para Victor: comece na Entrada; derrote os dois Ash Slimes; use E
-  na passagem; na Bifurcação escolha a Trilha principal (o Ninho de cinzas é opcional); atravesse o Santuário até a
-  Câmara final. Controles continuam WASD/setas, J/clique esquerdo, Espaço para esquivar e E para passagem.
+## Incremento atual — piloto ARPG isométrico 3D, 2026-10-07
 
-### Prova de conceito vertical — MainLand e ciclo de sessão (Prompt 4)
+- Criada a cena `Assets/Huntz/Prototype/Isometric3D/Scenes/Isometric3DARPGPilot.unity`, com MainLand-asteroide, área de treino, portais, NPCs, obstáculos, dois Ash Slimes e Guardião de treino.
+- O player usa `CharacterController` no plano XZ, Animator, espada no socket, ataque com impacto disparado por Animation Event, esquiva, dano/morte, HUD e interação. Ao andar, vira na direção do movimento; o mouse só atualiza a direção no início de cada golpe, que fica travada até o fim da animação.
+- O controlador usa aceleração/desaceleração, Shift para corrida, vigor com regeneração, ataque mantido com repetição e buffer, deslocamento reduzido durante ataques e esquiva direcional que cancela o golpe. A câmera acompanha o jogador e aceita zoom suave pela roda do mouse; a HUD apresenta barras de vida e vigor.
+- O builder 3D agora gera trilha até o portal, telhados inclinados, janelas, portal visível e marco astral na vila. A produção continua graybox; nenhum asset 2D antigo nem serviço de geração foi usado.
+- O humanoide tem Avatar Generic válido salvo como `.asset`, ossos Transform nomeados e seis clips (Idle, Run, Attack, Dodge, Hurt, Death). Perfis alteram cores nos slots Skin/Cloth/Leather/Metal/Hair/Accent. Ainda não há SkinnedMeshRenderer ou malha importada.
+- As animações estavam paradas porque o builder passava um root motion inexistente ao `BuildGenericAvatar` e tentava salvar o resultado como `.avatar`. Agora usa root motion vazio, salva em `.asset` e o prefab atual foi reparado; os quatro Animator da cena apontam para o Avatar válido. O Play Mode confirmou `Run` com peso 1 e pose de perna alterada; o estado/clip `Attack` também alterou o braço.
+- A revisão posterior de 2026-10-08 validou deslocamento real com WASD e Shift pelo Input System, além de Walk/Run e cadência; veja a seção de continuação atual acima. Mira por mouse, esquiva, dano, interação, zoom, colisões e portais ainda precisam de partida manual. Não foi gerada build ou suíte automatizada.
+- O Unity MCP e `ProjectSettings/EditorBuildSettings.asset` confirmam somente `Isometric3DARPGPilot.unity` habilitada na build; `HuntzVerticalSlice.unity` e a cena 2D HumanoidRigPilot ficaram preservadas fora dela.
+- O Editor está em Edit Mode com a cena 3D ativa. Nenhuma geração/cobrança de PixelLab ou Higgsfield ocorreu.
 
-- A cena isolada continua em `Assets/HuntzSlice/Scenes/HuntzVerticalSlice.unity`. O builder agora está disponível em
-  **Huntz → Build MainLand + Hunt Loop**; o antigo menu **Build Vertical Slice Room** permanece como alias. A geração
-  sobrescreve somente essa cena da slice; não altera os protótipos em `Assets/Scenes/`/`Assets/IsoRPG/` nem o
-  `ProjectSettings/EditorBuildSettings.asset` (os três cenários originais continuam listados).
-- A cena reúne dois roots alternáveis: uma MainLand compacta isométrica (malha procedural 9×9, borda física, Portal HZ,
-  mesa de preparação e cristais de referência) e o ambiente da hunt, inicialmente oculto. Jogador e controlador ficam
-  fora desses roots para preservar estado durante as trocas. Aproximar-se do Portal HZ ou da mesa e pressionar **E**
-  inicia uma hunt ou tenta comprar a melhoria, respectivamente.
-- O recurso único é o **Núcleo da Fenda**, sem inventário ou loja geral: o desvio Ninho de cinzas concede 1 e vencer o
-  chefe concede 1. A mesa gasta 1 para comprar uma única melhoria de teste de **+1 dano**. Saldo e melhoria existem
-  apenas no runtime desta sessão; não há save/load. Núcleos do desvio já coletados ficam no saldo ao morrer; a morte não
-  concede o núcleo do chefe. Valores e regras são temporários e não alteram `docs/GDD.md`.
-- Vitória ou morte retorna automaticamente à MainLand, restaura o jogador a 8/8 HP e mostra um resumo da tentativa:
-  resultado, salas visitadas, núcleos ganhos e saldo. O Portal pode iniciar outra expedição; estados, posição/HP dos
-  slimes e estado/posição/HP do chefe são reinicializados. A melhoria comprada continua ativa entre hunts enquanto a
-  sessão runtime estiver aberta.
-- **Verificado pelo MCP:** recompilação solicitada e Editor pronto; menu do builder executado e cena salva; Play Mode
-  iniciado na MainLand com 8/8 HP, Portal/mesa visíveis e HUD/controles legíveis. Uma rotina `execute_code` percorreu as
-  passagens por chamadas de runtime, limpou salas via dano direto e venceu o chefe: confirmou bifurcação (desvio e rota
-  principal), retorno com `+2` núcleos (desvio + chefe), compra por 1 núcleo, dano efetivo 1→2, nova hunt com dois
-  inimigos restaurados e retorno à MainLand após morte, mantendo saldo e melhoria. Captura visual do resumo após derrota:
-  `Library/HuntzSliceCaptures/phase4-result-mainland.png` (fora de `Assets/`). A rotina terminou com `MainLand=true`,
-  ambiente da hunt inativo, 1 núcleo, dano 2 e jogador 8/8. Depois reiniciei o Play Mode; estado atual deixado para
-  teste manual: MainLand ativa, saldo 0, dano base 1, sem melhoria, jogador 8/8.
-- **Limite do teste:** a rotina valida estados/transições por código e teleportes MCP, não uma partida por teclado. A
-  compilação/Console não mostrou erros C# nem mensagens próprias de `HuntzSlice`; `NoSubscription` do pacote Unity AI é
-  ruído externo já conhecido. Movimento real, alcance da interação com E, combate do jogador, esquiva, telegráficos e
-  sensação do ciclo ainda precisam de confirmação manual.
-- **Teste manual recomendado:** para uma sessão limpa, pare e inicie Play Mode novamente. Mova com WASD/setas ao Portal
-  HZ e pressione E; derrote os dois slimes e use E nas passagens. Na Bifurcação, escolha Ninho de cinzas, limpe-o para
-  obter 1 núcleo, volte e siga Trilha principal → Santuário → Câmara final. Observe os dois avisos do Guardião, esquive
-  ou saia das áreas e ataque com J/clique durante a recuperação. Ao vencer, confirme retorno/resumo; vá à mesa e
-  pressione E para gastar 1 núcleo e ver o dano mudar de 1 para 2; volte ao Portal e confirme o bônus na hunt seguinte.
-  Para testar derrota, permaneça nos avisos até HP zero e confirme retorno/resumo sem núcleo do chefe. O MCP não
-  automatizou esses controles.
+## Próximos passos
 
-- O projeto **não está em git**. Recomendado: `git init` + `.gitignore` Unity (ignorar `Library/`, `Temp/`, `Logs/`,
-  `UserSettings/`, `*.csproj`, `*.slnx`) antes da próxima rodada de mudanças.
-- Pacote `com.unity.ai.assistant` gera erros `NoSubscription` no Console; pode ser removido se incomodar (confirmar com o dono).
-- `Assets/TutorialInfo/` e `SampleScene` são sobras do template.
-- O builder **sobrescreve** a cena isométrica a cada execução — qualquer edição manual na cena será perdida.
-- Existe uma pasta `/home/victor/workspace/workspace/Huntz/Ui` no WSL de conteúdo/relação desconhecida com o jogo — perguntar.
+1. Revisar visualmente a passada em escala normal de jogo; validar vigor, roda de zoom, ataque mantido, cancelamento por esquiva, colisões, NPCs e portal ida/volta.
+2. Validar manualmente a mira travada no início do ataque com mouse; ajustar aceleração, distâncias de esquiva e zoom com base na partida.
+3. Validar o fluxo de rig com um modelo importado quando o dono liberar a etapa de arte; preservar bone names/socket e mapear `SkinnedMeshRenderer`.
+4. Revisar a primeira build standalone depois que os controles em Play Mode forem aprovados.
 
-## Entrega do kit de arte e da build jogável — 2026-10-06
+## Histórico do protótipo 2D preservado
 
-- Cena de inicialização: `Assets/HuntzSlice/Scenes/HuntzVerticalSlice.unity` (primeira em Build Settings). Build atual em
-  `Builds/HuntzPrototype_v0.1.0/Huntz.exe`; pacote Windows x64 completo na mesma pasta.
-- Loop incluído: MainLand, Portal HZ, mesa de preparação e melhoria, seis salas com bifurcação, Ash Slimes, Guardião da
-  Fenda, recompensa, derrota/vitória e retorno. O estado da sessão é temporário e não há save/load.
-- Controles: WASD/setas para mover, J ou clique esquerdo para atacar, Espaço para esquivar, E para interagir e Q para
-  usar poção. Na cena `HuntzIsoRPG`, E interage com NPC/baú e Q usa poção.
-- Arte final em `Assets/HuntzSlice/Art/Final/`: guerreiro com Idle/Walk/Attack/Dodge/Hurt/Death em oito direções,
-  NPCs, Ash Slime, Slime Rei, Guardião da Fenda, terrenos, props, telegráficos, VFX e ícones do HUD. Animações em
-  `Assets/HuntzSlice/Animations/`; prefabs da fatia e do mapa isométrico em suas pastas `Prefabs/`.
-- Cena `HuntzIsoRPG` reconstruída e aberta em Play Mode: aldeia, terreno, casas, poço, árvores, pedras, baús, guerreiro,
-  NPCs e slimes usam sprites; captura `Library/HuntzCaptures/isometric-village-final.png`. MainLand está em
-  `Library/HuntzCaptures/final-mainland-preview.png`.
-- Verificação: compilação Unity sem erros C# próprios; ambas as cenas abriram em Play Mode; estados de salas, chefe,
-  recompensa, melhoria, retorno e reinício foram percorridos via chamadas MCP. Build Windows x64 terminou com sucesso,
-  0 erros e avisos de pacotes/shaders externos ao código do jogo.
-- A jogada de teclado/mouse ainda precisa de uma pessoa: Unity MCP não injeta entradas. Ela serve para sentir o ritmo do
-  combate e conferir controles, sem bloquear a entrega do protótipo.
-- O guerreiro da fatia é uma folha completa por ação/direção. A montagem em camadas quadro a quadro de pele, cabelo,
-  roupa e equipamento e variações selecionáveis é a próxima expansão do padrão humanoide; não está incluída na arte atual.
+## Histórico 2D — piloto de rig e ambiente graybox
 
-## Próximos passos sugeridos
+- Criados `HuntzHumanoidRig`, `HuntzHumanoidRigPart`, `HuntzHumanoidAppearance` e `HuntzHumanoidAppearanceProfile`. O contrato separa corpo, cabeça, cabelo, face, torso, membros, armadura e acessório em SpriteRenderers presos à hierarquia Transform.
+- `Assets/Huntz/Prototype/HumanoidRigPilot` contém prefab, Sprite Library, duas paletas de placeholder e AnimatorController com Idle/Walk/Attack/Dodge/Hurt/Death em oito direções. A arma se conecta ao `WeaponSocket` na mão e Attack expõe um Animation Event de impacto.
+- `HuntzRigPilotController` usa Input System e `Rigidbody2D.linearVelocity`; o evento de impacto consulta alvos na direção travada. Espaço esquiva, C troca a paleta e E interage com NPCs/portais.
+- O contato do slime graybox dispara Hurt e dano; esquiva oferece invulnerabilidade temporária, Death bloqueia movimento e R reinicia o ator. Essas rotas estão implementadas, mas precisam de validação manual no Play Mode.
+- `Huntz/Prototype/Build Graybox Pilot Environment` criou uma MainLand isométrica, borda e obstáculos 2D, Ana/Bruno como manequins rigados, mercado/oficina cenográficos, portal para uma área de treino e alvos de combate. Tudo é placeholder de geometria/cor.
+- A ponte MCP do Unity respondeu. `refresh_unity` concluiu compilação sem erros C#; o Console retornou somente o aviso interno `[WebSocket] Unexpected receive error: WebSocket is not initialised`. O pacote `com.unity.2d.animation` 16.0.1 já estava instalado; não foi adicionado pacote.
+- A Build Settings foi lida via MCP: `HuntzVerticalSlice.unity` continua a única cena de build. A nova cena não substituiu a fatia nem foi adicionada à build.
+- Captura MCP do Play Mode mostra o HUD do piloto, a ação `Attack / NorthEast` e feedback do portal. Isso não é validação completa de movimento nas oito direções, dano, esquiva, colisões ou ida/volta; nenhuma suíte automatizada foi criada/executada.
+- Não houve geração de arte nem consumo de créditos neste incremento. PixelLab/Higgsfield ficam fora do fluxo até o dono reabrir a etapa de arte.
 
-1. Abrir `Builds/HuntzPrototype_v0.1.0/Huntz.exe` e jogar uma sessão completa; enviar feedback de escala, câmera e ritmo.
-2. Iniciar o controle de versão Git antes de uma rodada maior de level design.
-3. Expandir o Humanoid Standard para sprites sincronizados de cabelo, pele, roupa e equipamento, com pivôs e rótulos de
-   pose compatíveis; validar as camadas no prefab antes de criar várias aparências.
-4. Trocar o layout gerado por builder por Tilemap isométrico + prefabs quando o level design manual começar.
-5. Planejar persistência e novos sistemas somente depois de validar este loop curto.
+## Histórico 2D — espada e ataque 8D
 
-## Registro de sessões
+- O jogador carrega `StarterSword` através de `HuntzWeaponDefinition` e `HuntzEquippableWeapon`; pode equipar uma definição ou sprite e somar bônus de dano, alcance e largura.
+- `Hero_Attack_8D_6F.png` fornece seis quadros sem arma embutida nas oito vistas a 7,14 fps. East é substituído pela folha `Hero_Attack_East_12F.png`, com 12 quadros a 14 fps. Ambos duram cerca de 0,85 s.
+- O jogador trava a direção; ao entrar no quadro de índice 2 (seis quadros) ou 4 (East), `HuntzDirectionalAnimator.FrameChanged` dispara uma vez a pose de impacto, o arco visual e a consulta de dano. A pose da espada dura 16% do clip, acompanhando a seção de contato.
+- Originais, manifesto, recipe e quadros extraídos estão em `Assets/Huntz/Art/Source/Characters/Hero/AttackCycle`. O importador `Tools/import_huntz_animation.py` monta Source/Final. No Editor, use `Huntz/Animation/Import Hero Attacks 8D` e `Huntz/Combat/Import Starter Sword`; não execute `HuntzSliceBuilder`.
+- O refresh compilou sem erros; `IsHeroAttackSetImported`, `IsHeroAttackEastImported` e `IsStarterSwordImported` retornaram verdadeiro. `HuntzAnimationTools.ValidateScene` retornou zero. Um hit temporário em SouthEast registrou frame 2, impacto resolvido, espada/arco visíveis e vida 2→1. O alvo foi destruído e o Play Mode encerrado sem salvar a cena.
+- O Editor agora está em Edit Mode, na cena `HuntzVerticalSlice`. O Console final não tinha erros nem avisos. Um aviso interno do WebSocket do MCP apareceu durante refresh, mas não impediu compilação nem importação.
+- A articulação corporal além do lunge ainda é sutil; revise a leitura da espada e pontos de mão em escala de jogo. Dodge/Hurt/Death continuam arte provisória.
+- PixelLab ficou sem trial após cinco gerações usadas nesta continuação; US$ 0 pagos. O AutoSprite de Higgsfield retornou 404 ao tentar buscar a referência do PixelLab. O conector não aceita um caminho de arquivo local pela via suportada; não foram usados créditos Higgsfield (saldo 84). A folha foi concluída sem geração paga/trial usando o pixel-art workbench do PixelLab.
 
-| Data | Agente | Resumo |
-|---|---|---|
-| 2026-10-04/05 | Claude Code | Setup MCP + WSL; demo plataforma 2D; conceito RPG isométrico; docs de handoff |
-| 2026-10-05 | Codex | Health check do MCP via HTTP: instância `My project` conectada, Unity 6000.6.4f1, cena `HuntzIsoRPG`, compilação concluída e Console sem erros/avisos; última leitura de estado reportou `stale_status`. |
-| 2026-10-05 | Codex | Leitura de `Anotações.txt` e criação de `docs/GDD.md` com visão consolidada, propostas de mecânicas, escopo de primeiro marco e decisões em aberto. |
-| 2026-10-05 | Codex | MCP iniciado no Unity e verificado novamente: endpoint HTTP respondeu 200, uma instância `My project` conectada, `ready_for_tools=true`, sem compilação pendente, cena `HuntzIsoRPG` ativa e Console com 0 erros/avisos. |
-| 2026-10-05 | Codex | Implementada a primeira sala jogável isolada em `Assets/HuntzSlice/` e salva como `HuntzVerticalSlice`; protótipos e Build Settings preservados. Scripts compilaram sem erros/avisos próprios, cena aberta em Play Mode e inspecionada via MCP. Controles aguardam teste manual; `editor/state` ficou stale temporariamente e terminou pronto para ferramentas. |
-| 2026-10-06 | Codex | Prompt 2: rota fixa de seis salas, passagens após combate, retorno sem respawn, desvio com recompensa, santuário, sala final e mapa/HUD. Corrigida inicialização do estado runtime e resiliência dos singletons. Compilação, reconstrução e início em Play Mode verificados; Console final limpo. Travessia completa ainda depende de confirmação manual. |
-| 2026-10-06 | Codex | Prompt 3: chefe Guardião da Fenda na Câmara final, investida em corredor e pulso circular telegráficos, HUD de chefe, fim por vitória/derrota e Núcleo da Fenda como recompensa temporária. Compilação/build/Play e estados de resultado inspecionados via MCP; nenhuma entrada de teclado foi simulada; combate/esquiva ainda dependem de teste manual. |
-| 2026-10-06 | Codex | Prompt 4: MainLand procedural com Portal HZ/mesa, retorno com resumo em vitória ou morte, Núcleo da Fenda como recurso único de sessão e melhoria +1 dano. Compilação, builder e Play Mode conferidos; transições completas validadas por chamadas runtime MCP, sem simular teclado. Teste manual de controle/interação/combate pendente. |
-| 2026-10-06 | Codex | PixelLab MCP reconectado e validado. Gerado `Huntz Humanoid Standard v1 - Base` em oito direções; PNGs baixados e Unity AssetDatabase atualizado em `Assets/HuntzSlice/Art/Drafts/HumanoidStandard/PixelLab_Base/`. O grupo Idle tem quatro quadros concluídos para South; faltam sete direções. O trial limita a uma geração de animação simultânea, então as demais precisam ser enfileiradas sequencialmente. Duas gerações usadas, 38 restantes. Detalhes e IDs em `docs/ASSET_BACKLOG.md`. |
-| 2026-10-06 | Codex | Criada a cena separada `Assets/HuntzSlice/Scenes/HumanoidStandardPreview.unity` e o menu **Huntz → Build Humanoid Standard Preview** para comparar as oito direções em escala de jogo, com filtro Point, 64 PPU e pivô nos pés. Screenshot em `Library/HuntzSliceCaptures/humanoid-standard-preview-1.png`; a fatia principal e os Build Settings não foram alterados. |
-| 2026-10-06 | Codex | Kit de arte final integrado à fatia vertical e ao protótipo isométrico, controlador direcional e prefabs reutilizáveis criados, ambas as cenas abertas em Play Mode, Build Settings reorganizados com a fatia em primeiro e build Windows x64 gerada. Jogada por teclado continua manual; detalhes e limites no bloco “Entrega do kit de arte e da build jogável”. |
+## Histórico 2D — base de caminhada de 2026-10-06
+
+- Walk redesenhado no PixelLab: oito quadros × oito direções, 14 fps. Originais, referências, jobs/seeds/prompts e manifestos em `Art/Source/Characters/Hero/WalkCycle`. Montagem nearest 2×, quadros 208 × 192, folha 1664 × 1536, apoio em y=93 do canvas fonte.
+- A fonte antiga NorthWest olhava para a direita. O primeiro resultado foi rejeitado e preservado só como histórico em Source; a caminhada usa `NorthWest_Corrected`. Idle NorthWest também foi substituído por quatro quadros novos. Não houve espelhamento.
+- `Tools/import_huntz_animation.py` baixa, confere, alinha e monta a arte. Suporta uma folha inteira ou substituir direções sobre uma folha base. Produz contato/GIF/hashes em Library antes de `--apply`.
+- `Tools/build_huntz_art.py` preserva a caminhada e o Idle revisados. `--only hero-walk` restaura somente a folha Walk; o algoritmo de passos por recortes de Idle foi removido.
+- `HuntzDirectionalAnimator` mantém fase ao virar, expõe ação/frame/velocidade no Inspector e suporta direção `None` para criaturas e efeitos. Todos os sprites animados da cena e dos prefabs foram vinculados explicitamente a renderer/conjunto. Nove conjuntos, 81 clips; componentes Legacy removidos.
+- Player usa velocidade física para Walk e conserva o vetor de ataque/esquiva durante a ação. Durações de ações vêm dos assets. Slime para ao morrer; chefe retoma sua fase após Hurt.
+- `HuntzAnimationTools` vincula/valida cena e prefabs. A build usa validação estrutural. `HuntzAnimationPreview` oferece reprodução, scrub e linha de pivô no Editor.
+- HUD corrigido: estilos GUI não persistem como objetos vazios entre recargas; texturas/ícones são serializados e foram vinculados via MCP.
+- Cena/prefabs foram atualizados e salvos via Unity MCP. O builder principal **não** foi executado; nenhuma reconstrução da vila.
+
+## Verificação do piloto 2D (histórico)
+
+- Refresh e compilação C# no Editor; cena sem scripts ausentes e sem erros de validação.
+- Movimento/parada nas oito direções pelo Input System, com todos os novos ciclos até F07. North foi repetido em área livre: no primeiro trajeto a colisão com o portal parava o corpo e selecionava Idle.
+- Capturas reais de passos em `Assets/Screenshots/Hero_Walk_East_Runtime_*.png`. HUD final em `Huntz_Walk_Foundation_Ready.png`.
+- Ataque e esquiva pelo Input System até F05/F03; Hurt e Death por `TakeHit` até F01/F07. Isso verifica transições, não o combate completo.
+- Portal acionado por E do Input System após posicionar o personagem perto dele: entrou na sala 0, dois slimes, ciclos Idle F00–F03 e Move F00–F05 observados.
+- Dispositivos/callbacks temporários removidos; runInBackground restaurado. Nenhuma suíte de testes foi criada ou executada.
+- Console final do Play Mode sem erros/avisos. Houve mensagens nativas de GC handle numa recarga intermediária; não reapareceram na conferência final.
+- Build Windows x64 **0.1.3**, `Builds/HuntzPrototype_0.1.3_WalkFoundation/Huntz.exe`, 106,49 MB, zero erros e dois avisos: `Hidden/Core/DebugOccluder` e `Hidden/Core/DebugOcclusionTest` não compatíveis com URP. O executável não foi aberto para uma partida.
+- Editor foi deixado fora do Play Mode, com HuntzVerticalSlice salva e como única cena de build.
+
+## Próximo trabalho da fase 2D (histórico)
+
+1. No piloto, conferir manualmente WASD em oito direções, colisões/limites da ilha, interação dos NPCs/lojas, portal ida/volta, esquiva, troca de paleta e impacto/dano nos alvos.
+2. Ajustar escala e ordem de desenho da espada/socket. O graybox usa partes rígidas presas aos ossos; não usa `SpriteSkin` ponderado.
+3. Só depois da validação integrar esse contrato ao guerreiro e às demais entidades da cena de build. Manter a fatia principal intacta enquanto o piloto não estiver aprovado.
+4. Não gerar arte neste ciclo. Atualizar STATUS/ART_PIPELINE/HANDOFF conforme o resultado manual e não duplicar fontes da verdade em PROJECT_MAP.
+
+## Ferramentas, custo e continuidade na fase 2D (histórico)
+
+- A ponte Unity MCP em `http://127.0.0.1:8080/mcp` respondeu nesta continuação. A cena principal foi aberta e confirmada sem alterações antes de criar o piloto. Estado final do Editor: Edit Mode, cena ativa `Assets/Huntz/Prototype/HumanoidRigPilot/Scenes/HumanoidRigPilot.unity`; a única cena de Build Settings continua `HuntzVerticalSlice`.
+- Para importar só Walk: `Huntz/Animation/Import Hero Walk`. Para regenerar conjuntos dos .anim: `Huntz/Build Directional Sprite Sets`. Para validar: `Huntz/Animation/Validate Active Scene`.
+- Para importar/rever Attack: `Huntz/Animation/Import Hero Attacks 8D`, `Huntz/Animation/Import Hero Attack East` e `Huntz/Animation/Preview`. Para item: `Huntz/Combat/Import Starter Sword`.
+- `Huntz/Animation/Bind Active Scene and Character Prefabs` altera as referências da cena e dos prefabs animados; salvar a cena depois. Não executar o builder principal para atualizar animações.
+- Para criar o piloto inicial, use `Huntz/Prototype/Create Humanoid Rig Pilot` somente se a pasta ainda não existir. Para reconstruir apenas o grupo de ambiente cinza gerado e completar o slot Body do prefab, use `Huntz/Prototype/Build Graybox Pilot Environment`.
+- Saldo PixelLab atual: zero trial e US$ 0,00 pagos. Higgsfield: 84 créditos não usados porque AutoSprite não aceitou a URL de referência (404).
+- `HuntzEquippableWeapon` recebe o `HuntzDirectionalAnimator` para ocultar a camada se algum conjunto ainda estiver usando os clips fallback antigos com lâmina embutida; no conjunto Attack 8D importado, a camada permanece visível.
+- Git tinha extensa reorganização staged e alterações unstaged antes desta revisão. Elas foram preservadas; não houve commit, push ou reset. Checkpoint anterior: `accccd5`; sem remoto configurado.
+- A cena antiga HuntzIsoRPG está preservada fora do projeto em `C:/Users/victo/Documents/Huntz/Recovery/HuntzIsoRPG_2026-10-06/`; não reintroduzi-la em Assets. A cena ativa do Editor é o piloto; a fatia `HuntzVerticalSlice` segue a única cena da build.

@@ -1,0 +1,19 @@
+{
+  "name": "starter_sword",
+  "image": "StarterSword.png",
+  "pixel_lab": {
+    "job_id": "31315d71-13ef-4c93-a820-8302e074c2c8",
+    "asset_id": "9fc7c1a2-299a-5c87-8afc-180a87b81436",
+    "seed": 301124,
+    "generations": 1,
+    "size": [64, 64],
+    "prompt": "Single small one-handed fantasy sword game icon, matching a moody teal-and-brown pixel art hero: cool steel blade with crisp dark outline, brown leather grip and tiny gold crossguard, blade angled up and right with its handle at the lower left edge. Clean readable pixel clusters, transparent background, no character, no sheath, no text or effects."
+  },
+  "final_asset": "Assets/Huntz/Art/Final/Shared/Weapons/StarterSword.png",
+  "unity": {
+    "pixels_per_unit": 64,
+    "filter": "Point",
+    "compression": "Uncompressed",
+    "pivot": [0.16, 0.18]
+  }
+}

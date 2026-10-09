@@ -1,13 +1,14 @@
-# Huntz — Visão do jogo e mecânicas
+# Huntz — visão do jogo e proposta de design
 
-**Versão:** rascunho 0.1  
-**Base:** `Anotações.txt`, organizado e ampliado para orientar as próximas decisões de design.  
-**Gênero definido:** RPG isométrico 2D.  
-**Estado:** conceito; as sugestões deste documento ainda precisam ser validadas no protótipo.
+**Versão:** 0.3 · **Atualizado:** 2026-10-07
+**Base:** notas originais preservadas em docs/historico/Anotações_originais.txt.
+**Estado:** proposta de produto. O dono considera a fatia vertical jogável validada, mas as regras abaixo que não aparecem em docs/STATUS.md continuam sendo planos ou sugestões.
+
+**Direção confirmada pelo dono em 2026-10-07:** RPG de ação isométrico 3D, combate em tempo real inspirado no gênero de Diablo/Path of Exile, guerreiro inicial e personagens montados sobre rig humanoide reutilizável. A produção de arte está adiada; o piloto usa apenas geometria graybox da Unity.
 
 ## Conceito
 
-Huntz é um RPG isométrico 2D sobre um guerreiro que morreu no mundo real e foi escolhido pela Guilda para lutar por toda a eternidade. Da MainLand, um asteroide suspenso no espaço-tempo, o jogador atravessa portais para caçar criaturas que invadem e corrompem diferentes universos.
+Huntz é um RPG de ação isométrico sobre um guerreiro que morreu no mundo real e foi escolhido pela Guilda para lutar por toda a eternidade. Da MainLand, um asteroide suspenso no espaço-tempo, o jogador atravessa portais para caçar criaturas que invadem e corrompem diferentes universos. A apresentação de jogo passa a usar mundo, câmera, personagens, cenário e física 3D.
 
 Cada hunt é uma expedição por salas conectadas. O jogador escolhe rotas, enfrenta combates, procura recompensas opcionais e tenta chegar ao chefe final. Ao retornar, usa os recursos obtidos para ajustar seu personagem e se preparar para hunts mais perigosas.
 
@@ -170,29 +171,41 @@ Cada universo pode ter criaturas, efeitos ambientais e um chefe temático que en
 
 As três dificuldades podem compartilhar o tema e as arenas, mas variar composição dos inimigos, modificadores, duração da rota e recompensa. Evite depender apenas de aumentar HP e dano: isso tende a tornar a dificuldade mais demorada sem exigir novas decisões.
 
-## Primeiro marco jogável recomendado
+## Protótipo ativo
 
-Os 5 universos e 25 hunts são um bom destino de conteúdo, mas um volume grande para validar antes de fechar combate, geração e progressão. Um primeiro marco deve provar o ciclo completo com:
+O protótipo jogável ativo está em `Assets/Huntz/Prototype/Isometric3D/Scenes/Isometric3DARPGPilot.unity`. Ele apresenta uma MainLand graybox, rig humanoide 3D, câmera isométrica ortográfica, movimento responsivo, corrida e esquiva com vigor, ataques sincronizados pelo Animator, dano, NPCs e portais. A cena agora também tem um primeiro ciclo de Hunt: Portal HZ, mapa lógico 3×3 Fácil, encontros, rotas entre salas, uma sala de saque aleatória, um chefe surpresa, chefe final e retorno à MainLand. `docs/STATUS.md` registra o que foi implementado e o que ainda precisa ser validado jogando.
 
-- MainLand pequena com Portal HZ, loja, armazém e treinador;
-- um universo temático;
-- uma hunt com grade 3×3, salas conectadas, uma rota opcional e retorno por salas limpas;
-- combate, morte e recompensa funcionando do início ao fim;
-- um chefe final e uma sala de recompensa ou elite;
-- duas classes contrastantes para validar builds — sugestão: Guerreiro e Mago;
-- um conjunto pequeno de equipamentos, requisitos de atributo e aprimoramento básico.
+Nesta primeira implementação, as nove salas reusam a arena graybox da Hunt; portais transportam o guerreiro entre nós adjacentes e a HUD mostra o mapa. O portal inicia diretamente a Hunt 01 Fácil. Médio (4×4), Difícil (6×6), seleção de destino, arenas próprias e persistência da expedição ainda não estão disponíveis. Fragmentos de fenda são uma carteira provisória em memória: encontros dão 1, a sala de saque dá 3, o chefe surpresa dá 3 e o chefe final dá 5. Eles sobrevivem à morte durante a sessão; não há XP, níveis ou salvamento persistente para aplicar a perda de experiência das anotações.
 
-Depois de o ciclo funcionar e ser divertido, o mesmo sistema pode ser ampliado para as dificuldades 4×4 e 6×6, outras hunts e os demais universos.
+O personagem e sprites da antiga direção 2D estão aposentados como base para o jogo. Os arquivos antigos permanecem no repositório somente por histórico e não entram na cena, no rig ou no pipeline atuais. A cena 3D é graybox, não representa arte final nem valida por si só o balanceamento, a hunt completa, progressão ou personagens importados.
 
-## Decisões em aberto
+### Controles implementados no piloto
 
-Estas escolhas não estão definidas nas anotações e devem ser fechadas antes de detalhar o balanceamento:
+- WASD ou setas movem relativo à câmera; aceleração e desaceleração suavizam a resposta.
+- Shift segura a corrida e consome vigor, que se regenera após uma breve pausa.
+- A roda do mouse aproxima ou afasta a câmera ortográfica suavemente; o zoom fica limitado para manter o guerreiro e o espaço de combate legíveis.
+- Clique esquerdo ou J atacam na direção do mouse registrada no início de cada golpe; segurar repete ataques. Em movimento, o guerreiro vira para a direção percorrida e mantém a orientação do golpe até a animação terminar. O jogador ainda pode se mover durante o golpe, com velocidade reduzida.
+- Espaço esquiva na direção pressionada; sem direção, usa o deslocamento/facing atual. A esquiva cancela o golpe, gasta vigor, tem recarga e oferece uma janela curta de invulnerabilidade.
+- E interage, C alterna aparência graybox e R reinicia. O piloto ainda não tem mapeamento de controle/gamepad.
+
+A próxima prova é jogar o ciclo novo no Play Mode: limpar encontros, usar saídas, revisitar salas, abrir o baú, encontrar o chefe surpresa, derrotar o chefe final, sair pelo portal e morrer numa tentativa. Depois disso, ajustar combate e arenas e começar progressão persistente. Lojas, armazém, atributos, habilidades, classes e itens equipáveis descritos nas anotações seguem no roteiro; os NPCs atuais ainda são pontos de interação provisórios.
+
+O plano de 5 universos e 25 hunts é visão de longo prazo, não escopo da fatia atual. Primeiro valide uma hunt curta com rotas, encontros, chefe e recompensas legíveis; só então aumente a grade e a quantidade de conteúdo.
+
+## Direções confirmadas
+
+- RPG de ação isométrico 3D com câmera fixa/ortográfica no piloto.
+- Guerreiro como primeiro personagem jogável.
+- Humanos 3D compartilham uma hierarquia de ossos, Avatar/Animator e socket de equipamento; a rotação do modelo cobre as direções do mundo.
+- Corpos, roupa, cabelo, armadura e acessórios devem poder variar em materiais/partes sobre o mesmo contrato de rig, quando isso mantiver proporções e silhuetas compatíveis.
+- A antiga cena 2D e seus assets não são referência de design; ficam somente no arquivo histórico. A nova cena 3D é a única entrada de Build Settings.
+- A arte gerada está pausada. A aparência atual é geometria provisória construída dentro do Editor da Unity.
+
+## Decisões ainda abertas
 
 1. O jogo será exclusivamente single-player ou terá modo cooperativo?
-2. Qual será o estilo visual: pixel art, ilustração HD ou outro?
-3. Como o jogador mira e ataca: direção do personagem, cursor, alvo selecionado ou combinação?
-4. Quais recompensas ficam permanentes ao morrer? Este rascunho recomenda manter o que foi coletado e perder apenas experiência da barra atual.
-5. A raridade será fixa por equipamento nomeado em todos os casos? Este documento assume que sim, como indicam as anotações.
-6. Haverá recursos diferentes por classe, mana universal ou habilidades limitadas apenas por cooldown?
-7. Qual é o tom da história e o que significa servir à Guilda “por toda a eternidade” para o personagem?
-
+2. O esquema final de controles e suporte a gamepad; o piloto usa movimento WASD com orientação pelo deslocamento e mira pelo mouse ao iniciar ataques, ainda a validar manualmente com entrada do jogador.
+3. Quais recompensas ficam permanentes ao morrer e qual é a punição exata de experiência?
+4. Haverá recursos diferentes por classe, mana universal ou habilidades limitadas por cooldown?
+5. Como as quatro classes diferem em habilidades e função quando compartilham equipamentos?
+6. Quais sistemas da visão longa pertencem ao primeiro jogo completo: geração procedural, economia, aprimoramento, crafting e número de universos?

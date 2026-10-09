@@ -11,6 +11,7 @@
         "**/*.user": true,
         "**/*.userprefs": true,
         "**/*.unityproj": true,
+        "**/*.slnx": true,
         "**/*.dll": true,
         "**/*.exe": true,
         "**/*.pdf": true,
@@ -45,6 +46,7 @@
         "**/*.unity": true,
         "build/": true,
         "Build/": true,
+        "Builds/": true,
         "Library/": true,
         "library/": true,
         "obj/": true,
@@ -60,7 +62,7 @@
         "*.asset": "yaml",
         "*.meta": "yaml",
         "*.prefab": "yaml",
-        "*.unity": "yaml",
+        "*.unity": "yaml"
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d71767083335f0468db64e884beee09, type: 3}
+  m_Name: RiftWarden
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzDirectionalSpriteSet
+  clips:
+  - action: Idle
+    direction: None
+    frames:
+    - {fileID: -425791111, guid: cd43ab793c3f4b34280f6b00e08a314c, type: 3}
+    - {fileID: -970327652, guid: cd43ab793c3f4b34280f6b00e08a314c, type: 3}
+    - {fileID: 593115963, guid: cd43ab793c3f4b34280f6b00e08a314c, type: 3}
+    - {fileID: 511997399, guid: cd43ab793c3f4b34280f6b00e08a314c, type: 3}
+    framesPerSecond: 6
+    loop: 1
+  - action: Charge
+    direction: None
+    frames:
+    - {fileID: -863379643, guid: 6e536f85357782a4591ab147b264f160, type: 3}
+    - {fileID: -148749249, guid: 6e536f85357782a4591ab147b264f160, type: 3}
+    - {fileID: -1602648037, guid: 6e536f85357782a4591ab147b264f160, type: 3}
+    - {fileID: -379250247, guid: 6e536f85357782a4591ab147b264f160, type: 3}
+    - {fileID: -2035765257, guid: 6e536f85357782a4591ab147b264f160, type: 3}
+    - {fileID: 683808736, guid: 6e536f85357782a4591ab147b264f160, type: 3}
+    framesPerSecond: 12
+    loop: 0
+  - action: Pulse
+    direction: None
+    frames:
+    - {fileID: -1047182158, guid: afd56f8b31f9073408458670536bb695, type: 3}
+    - {fileID: 1172659596, guid: afd56f8b31f9073408458670536bb695, type: 3}
+    - {fileID: 733942082, guid: afd56f8b31f9073408458670536bb695, type: 3}
+    - {fileID: 1255525298, guid: afd56f8b31f9073408458670536bb695, type: 3}
+    - {fileID: 1899619921, guid: afd56f8b31f9073408458670536bb695, type: 3}
+    - {fileID: 701204064, guid: afd56f8b31f9073408458670536bb695, type: 3}
+    framesPerSecond: 10
+    loop: 0
+  - action: Recover
+    direction: None
+    frames:
+    - {fileID: -1670463569, guid: 52eb08431f12fc44f8a8e01fd7c386a5, type: 3}
+    - {fileID: 1697852935, guid: 52eb08431f12fc44f8a8e01fd7c386a5, type: 3}
+    - {fileID: 1180075532, guid: 52eb08431f12fc44f8a8e01fd7c386a5, type: 3}
+    - {fileID: -2119973343, guid: 52eb08431f12fc44f8a8e01fd7c386a5, type: 3}
+    framesPerSecond: 8
+    loop: 0
+  - action: Hurt
+    direction: None
+    frames:
+    - {fileID: 84897962, guid: f9027606413664747a674ba4649b1a61, type: 3}
+    - {fileID: -2008960410, guid: f9027606413664747a674ba4649b1a61, type: 3}
+    framesPerSecond: 14
+    loop: 0
+  - action: Death
+    direction: None
+    frames:
+    - {fileID: 1061470847, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    - {fileID: 910926018, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    - {fileID: 2082405206, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    - {fileID: 1092998553, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    - {fileID: 909123653, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    - {fileID: 325502526, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    - {fileID: -432478600, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    - {fileID: 2102669804, guid: fd01e2842e9a87249af7edda8ed93c10, type: 3}
+    framesPerSecond: 12
+    loop: 0

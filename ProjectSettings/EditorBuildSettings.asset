@@ -6,17 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/HuntzSlice/Scenes/HuntzVerticalSlice.unity
-    guid: 185be938ae55b4348a1b50f228c1fc5e
-  - enabled: 1
-    path: Assets/Scenes/HuntzIsoRPG.unity
-    guid: 80aa9f5ebd060a74d99551819899458a
-  - enabled: 1
-    path: Assets/Scenes/Huntz2DDemo.unity
-    guid: f5a6573f35410b64b8b03797985b6d9b
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Huntz/Prototype/Isometric3D/Scenes/Isometric3DARPGPilot.unity
+    guid: d571987c32bb43648b0ee32d5f92c293
   m_configObjects:
-    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
