@@ -30,11 +30,14 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
     }
 
     [SerializeField] HuntzArpg3DPlayerController player;
+    [SerializeField] HuntzArpg3DGrayboxKit arenaKit;
     [SerializeField, Min(0.2f)] float deathReturnDelay = 1.4f;
 
     readonly RoomState[] rooms = new RoomState[GridSize * GridSize];
     readonly List<HuntzArpg3DTarget> livingTargets = new List<HuntzArpg3DTarget>();
     readonly List<GateExit> exits = new List<GateExit>();
+    readonly List<GameObject> trainingSetPieces = new List<GameObject>();
+    readonly List<bool> trainingSetOriginalStates = new List<bool>();
 
     Transform mainlandArrival;
     Transform huntIsland;
@@ -45,15 +48,17 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
     int runNumber;
     int fragmentsAtRunStart;
     bool inHunt;
+    bool trainingSetHidden;
     float deathReturnAt = -1f;
     GUIStyle nodeStyle;
 
     static readonly Vector3 LockedGateColor = new Vector3(0.24f, 0.26f, 0.31f);
     static readonly Vector3 OpenGateColor = new Vector3(0.12f, 0.72f, 0.93f);
 
-    public void Configure(HuntzArpg3DPlayerController playerController)
+    public void Configure(HuntzArpg3DPlayerController playerController, HuntzArpg3DGrayboxKit grayboxKit = null)
     {
         player = playerController;
+        if (grayboxKit != null) arenaKit = grayboxKit;
     }
 
     void Start()
@@ -66,7 +71,15 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
             return;
         }
 
+        if (arenaKit == null || !arenaKit.IsComplete)
+        {
+            Debug.LogError("Huntz Hunt Director requires the generated graybox arena kit.", this);
+            enabled = false;
+            return;
+        }
+
         player.ResetToSpawn += OnPlayerReset;
+        CacheTrainingSetPieces();
         mainlandArrival = GameObject.Find("Chegada da MainLand")?.transform;
         huntIsland = GameObject.Find("Hunt — Campo de Treino")?.transform;
         if (mainlandArrival == null) mainlandArrival = player.transform;
@@ -101,6 +114,7 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         if (player != null) player.ResetToSpawn -= OnPlayerReset;
         if (entryPortal != null) entryPortal.SetInteractionOverride(null);
         if (returnPortal != null) returnPortal.SetInteractionOverride(null);
+        RestoreTrainingSet();
     }
 
     void Update()
@@ -118,6 +132,7 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         inHunt = false;
         currentRoomIndex = -1;
         ClearDynamicContent();
+        RestoreTrainingSet();
         player.ReturnToMainlandAfterDeath(mainlandArrival.position,
             "Você caiu na Hunt. Voltou à MainLand; os fragmentos já coletados foram mantidos.");
     }
@@ -131,6 +146,7 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         }
 
         player = interactingPlayer;
+        HideTrainingSet();
         BuildRoomMap();
         inHunt = true;
         deathReturnAt = -1f;
@@ -169,6 +185,13 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         Vector3 spawn = huntIsland.position + new Vector3(0f, 0.05f, -0.85f);
         player.TeleportTo(spawn, "Hunt 01 — Ruptura de Treino");
         if (arrivalDirection.sqrMagnitude > 0.01f) player.FaceDirection(arrivalDirection);
+
+        HuntzArpg3DArenaLayoutKind layout = room.kind == RoomKind.Cache
+            ? HuntzArpg3DArenaLayoutKind.Cache
+            : room.kind == RoomKind.FinalBoss || room.kind == RoomKind.SurpriseBoss
+                ? HuntzArpg3DArenaLayoutKind.Boss
+                : HuntzArpg3DArenaLayoutKind.Combat;
+        HuntzArpg3DGrayboxArenaBuilder.Build(dynamicContentRoot, huntIsland.position, arenaKit, layout, roomIndex);
 
         if (!room.cleared) SpawnRoomEncounter(room);
         CreateAvailableExits(roomIndex, room.cleared);
@@ -212,19 +235,12 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         targetObject.transform.SetParent(dynamicContentRoot, true);
         targetObject.transform.position = position;
 
-        if (isBoss)
-        {
-            CapsuleCollider capsule = targetObject.AddComponent<CapsuleCollider>();
-            capsule.center = new Vector3(0f, 0.92f, 0f);
-            capsule.height = 1.85f;
-            capsule.radius = 0.62f;
-        }
-        else
-        {
-            SphereCollider sphere = targetObject.AddComponent<SphereCollider>();
-            sphere.center = new Vector3(0f, 0.48f, 0f);
-            sphere.radius = 0.57f;
-        }
+        CharacterController motor = targetObject.AddComponent<CharacterController>();
+        motor.height = isBoss ? 1.85f : 1.14f;
+        motor.radius = isBoss ? 0.62f : 0.5f;
+        motor.center = Vector3.up * (motor.height * 0.5f);
+        motor.stepOffset = 0.2f;
+        motor.skinWidth = 0.05f;
 
         if (isBoss)
         {
@@ -339,10 +355,10 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
     {
         GameObject chest = new GameObject("Baú da Ruptura");
         chest.transform.SetParent(dynamicContentRoot, true);
-        chest.transform.position = huntIsland.position + new Vector3(0f, 0f, 0.7f);
-        CreateVisual(PrimitiveType.Cube, chest.transform, new Vector3(0f, 0.42f, 0f),
-            new Vector3(1.15f, 0.78f, 0.82f), new Color(0.39f, 0.23f, 0.12f));
-        CreateVisual(PrimitiveType.Cube, chest.transform, new Vector3(0f, 0.82f, 0f),
+        chest.transform.position = huntIsland.position + new Vector3(0f, 0.12f, 0.7f);
+        CreateVisual(PrimitiveType.Cube, chest.transform, new Vector3(0f, 0.36f, 0f),
+            new Vector3(1.15f, 0.72f, 0.82f), new Color(0.39f, 0.23f, 0.12f));
+        CreateVisual(PrimitiveType.Cube, chest.transform, new Vector3(0f, 0.79f, 0f),
             new Vector3(1.2f, 0.16f, 0.86f), new Color(0.88f, 0.62f, 0.22f));
         BoxCollider trigger = chest.AddComponent<BoxCollider>();
         trigger.center = new Vector3(0f, 0.52f, 0f);
@@ -373,6 +389,7 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         currentRoomIndex = -1;
         deathReturnAt = -1f;
         ClearDynamicContent();
+        RestoreTrainingSet();
         interactingPlayer.TeleportTo(mainlandArrival.position, "MainLand");
         interactingPlayer.ShowFeedback("Você encerrou a Hunt antes do chefe. Fragmentos coletados: " + collected + ".");
     }
@@ -383,6 +400,7 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         inHunt = false;
         currentRoomIndex = -1;
         ClearDynamicContent();
+        RestoreTrainingSet();
         player.TeleportTo(mainlandArrival.position, "MainLand");
         player.ShowFeedback("Hunt concluída! O chefe caiu. Fragmentos obtidos nesta expedição: " + collected + ".");
     }
@@ -394,6 +412,47 @@ public sealed class HuntzArpg3DHuntDirector : MonoBehaviour
         currentRoomIndex = -1;
         deathReturnAt = -1f;
         ClearDynamicContent();
+        RestoreTrainingSet();
+    }
+
+    void CacheTrainingSetPieces()
+    {
+        string[] names =
+        {
+            "Pilar de Pedra",
+            "Barreira de Madeira A",
+            "Barreira de Madeira B",
+            "Acampamento de Caça",
+            "Vigia da Guilda"
+        };
+
+        foreach (string objectName in names)
+        {
+            GameObject sceneObject = GameObject.Find(objectName);
+            if (sceneObject == null) continue;
+            trainingSetPieces.Add(sceneObject);
+            trainingSetOriginalStates.Add(sceneObject.activeSelf);
+        }
+    }
+
+    void HideTrainingSet()
+    {
+        if (trainingSetHidden) return;
+        for (int i = 0; i < trainingSetPieces.Count; i++)
+        {
+            if (trainingSetPieces[i] != null) trainingSetPieces[i].SetActive(false);
+        }
+        trainingSetHidden = true;
+    }
+
+    void RestoreTrainingSet()
+    {
+        if (!trainingSetHidden) return;
+        for (int i = 0; i < trainingSetPieces.Count; i++)
+        {
+            if (trainingSetPieces[i] != null) trainingSetPieces[i].SetActive(trainingSetOriginalStates[i]);
+        }
+        trainingSetHidden = false;
     }
 
     void ClearDynamicContent()

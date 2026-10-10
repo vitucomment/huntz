@@ -8,14 +8,19 @@ Atualizado em 2026-10-09. Este é o registro do que está integrado e do que foi
 - Na atualização mais recente, o dono confirmou ter concluído a Hunt do início ao fim e ter morrido no percurso. A morte o retornou à MainLand como esperado.
 - A penalidade de experiência por morte permanece adiada para uma decisão de design; não foi implementada perda de XP.
 
-## Incremento de arma/hitbox e avaliação do graybox — 2026-10-09
+## Espada e kit de arenas graybox — 2026-10-09
 
 - A espada graybox foi refinada com lâmina, ponta, guarda, empunhadura, anéis e pomo. Ela fica no `WeaponSocket` da mão direita, alinhada à frente e levemente para baixo. O item ainda não pertence a um inventário/equipamento funcional.
 - `HuntzArpg3DWeaponGeometry` guarda os pontos de base/ponta da lâmina, define raio de 0,20 m e desenha a cápsula ao selecionar a arma no Editor. `HuntzArpg3DRig.ValidateRig` exige uma geometria de arma configurada no socket.
 - O ataque aplica dano por uma consulta `Physics.OverlapCapsule` entre os pontos atuais da lâmina, disparada por `OnWeaponImpact`; cada alvo sofre no máximo um acerto por golpe. O clipe de 0,68 s tem as curvas alinhadas aos tempos normalizados da preparação, impacto (31%) e recuperação; o evento está em 0,2108 s no keyframe de impacto.
 - Unity MCP atualizou o clipe de ataque e o prefab compartilhado do rig sem reconstruir a cena. O prefab passou em `ValidateRig`. Um spot-check no Play Mode posicionou dois alvos a 1 m e 3 m, aplicou a pose de impacto e acionou o callback do rig: o alvo próximo caiu de 3 para 2 de vida e o distante continuou com 3. Esse ensaio confirma a cápsula e a resolução de dano nessa pose; não substitui a revisão manual da animação e do ataque com input real. Depois da sonda, o Editor voltou ao Edit Mode, a cena ficou limpa e a consulta do Console por avisos/erros C# retornou zero entradas.
-- A captura da Game View mostra a espada conectada ao personagem. A geometria existente já permite conferir escala, rota e colisão; ainda é um graybox básico, com volumes simples e uma única arena repetida pelos nós da Hunt, não uma representação espacial suficiente para o jogo final.
-- Próxima fatia de geometria: kit modular de piso, parede, pilares e plataformas com colisores correspondentes; depois, variar silhueta e obstáculos entre salas, conferindo rota, alcance corpo a corpo, leitura isométrica e oclusão. A produção de arte segue pausada.
+- `HuntzArpg3DGrayboxKitBuilder` gera cinco prefabs reutilizáveis em `Assets/Huntz/Prototype/Isometric3D/Environment/GrayboxKit`: piso (2,26 × 0,06 × 2,22 m), parede (1,35 × 0,88 × 0,22 m), pilar (0,72 × 1,45 × 0,72 m), cobertura (1,10 × 0,62 × 0,52 m) e plataforma (1,45 × 0,16 × 1,45 m). Cada prefab separa `Presentation` de `Collision`; o visual não tem colisor e o módulo tem um `BoxCollider` próprio.
+- `HuntzArpg3DGrayboxArenaBuilder` monta piso 5 × 5 e três configurações pelo tipo da sala: combate com quatro coberturas baixas; saque com quatro segmentos de parede e placa elevada para o baú; chefe com quatro plataformas e pilares. A Hunt continua com salas lógicas 3 × 3; cada nó seleciona uma dessas três funções, em vez de um layout exclusivo por nó.
+- O diretor oculta os obstáculos do antigo campo de treino durante a expedição e restaura seu estado ao sair, morrer ou concluir. Os inimigos usam `CharacterController` e desviam de paredes, pilares e coberturas.
+- Verificação no Play Mode via Unity MCP: os layouts tiveram 25/26/25 módulos de piso; todos os módulos tinham exatamente um colisor sólido configurado, separado do visual. Capsule casts com o `CharacterController` confirmaram 4 m livres nas oito direções de esquiva. A abertura visual dos portais mede 1,04 m; o personagem tem 0,68 m de diâmetro, com 0,36 m de folga total. A linha de câmera até o tronco ficou livre nas três arenas.
+- Na pose de impacto de `Attack` (0,2108 s), o alvo a 1 m recebeu dano (3→2 HP), enquanto alvos a 2 m e 3 m não foram atingidos. As capturas de combate, saque e chefe foram revisadas na Game View e mostram arranjos distintos; a primeira mostra o piso em 5 × 5 sem folgas entre placas.
+- Unity 6000.6.4f1 recompilou sem erros C#. O Console não apresentou erros nem avisos de código; apareceu somente o aviso interno do MCP `[WebSocket] Unexpected receive error: WebSocket is not initialised`. Editor encerrado em Edit Mode, cena ativa limpa e ainda única em Build Settings. Não foi gerada build nem executada suíte automatizada; a produção de arte permanece pausada.
+- Próxima conferência: o dono deve percorrer os três layouts com input real para avaliar sensação de colisão, leitura e conforto das esquivas. As medições via MCP verificam dimensões, consultas físicas e linha direta da câmera, mas não substituem essa passagem manual.
 
 ## Refinamento sequencial do piloto 3D — 2026-10-08
 
@@ -31,9 +36,9 @@ Atualizado em 2026-10-09. Este é o registro do que está integrado e do que foi
 - Portal HZ agora inicia a Hunt 01 Fácil. A expedição cria uma grade lógica conectada 3×3, com entrada A1 fixa, chefe final C3, saídas apenas para salas adjacentes e possibilidade de voltar a salas já limpas. A HUD identifica sala e inimigos e mostra os nove nós; tipos não visitados ficam ocultos.
 - Cada sala de combate cria slimes de cinzas. Uma sala de saque e um chefe surpresa são sorteados em posições distintas a cada expedição. Limpar a sala libera os portais. O chefe final concede fragmentos e encerra a expedição, retornando à MainLand.
 - O baú de saque, os encontros e os chefes concedem fragmentos de fenda. A carteira fica no personagem durante a sessão e os fragmentos coletados permanecem após morte; morrer na Hunt retorna à MainLand após breve pausa e restaura vida/vigor. O protótipo ainda não tem XP/níveis para representar a perda de XP anotada.
-- A Hunt reutiliza a mesma arena graybox em cada nó e cria os portais no runtime. As dificuldades Média/Difícil, arenas próprias por sala, save/load, seleção pelo Portal HZ, progressão, lojas/armazém funcionais e itens equipáveis continuam pendentes.
+- Na data deste incremento (2026-10-08), a Hunt ainda reutilizava uma arena. O kit de 2026-10-09 passou a selecionar layouts graybox de combate, saque e chefe pela função do nó. As dificuldades Média/Difícil, save/load, seleção pelo Portal HZ, progressão, lojas/armazém funcionais e itens equipáveis continuam pendentes.
 - Unity 6000.6.4f1 recompilou os scripts sem erros C# nem avisos de código. O Console registrou um aviso interno do MCP (`WebSocket is not initialised`), sem bloquear atualização ou gravação da cena. A cena foi salva e segue como entrada de Build Settings.
-- A Hunt ainda não foi percorrida manualmente de ponta a ponta no Play Mode; colisões e equilíbrio dos encontros novos precisam dessa validação. Nenhuma build standalone ou suíte automatizada foi executada.
+- Na primeira validação deste incremento, a Hunt ainda não havia sido percorrida pelo dono; ele confirmou a conclusão completa e o retorno após morrer posteriormente. Os layouts e colisores adicionados em 2026-10-09 foram conferidos separadamente via MCP, mas ainda aguardam uma passagem manual do dono. Nenhuma build standalone ou suíte automatizada foi executada.
 
 ## Revisão mais recente — rig humanoide 3D — 2026-10-08
 
@@ -67,13 +72,11 @@ Atualizado em 2026-10-09. Este é o registro do que está integrado e do que foi
 
 ## Próximos incrementos do piloto 3D
 
-1. Concluir a etapa física: compilar, separar as colisões das duas ilhas na cena, confirmar que terreno, obstáculos e NPCs bloqueiam corretamente e conferir aderência ao chão no Play Mode.
-2. Consolidar o contrato do rig e das animações: Idle/Walk/Run, oito direções, ataques, esquiva, dano e morte, com arma acompanhando o socket.
-3. Refinar o ciclo de combate: preparação, impacto e recuperação sincronizados entre corpo, arma, efeito e dano; validar alvos e colisões de hit.
-4. Estruturar mundo e Hunt em peças reutilizáveis: arenas/colliders, encontros, portais, NPCs e transições; validar a Hunt Fácil de ponta a ponta.
-5. Separar controles e interface da lógica do personagem, criar configuração de input reutilizável e trocar HUD provisória quando o fluxo estiver estável.
-6. Completar persistência e progressão mínima da fatia; só então expandir dificuldades e sistemas de loot/economia.
-7. Fazer a revisão final de build, resolução, desempenho e Console. Só reabrir produção de arte quando o dono liberar essa etapa.
+1. Percorrer manualmente os layouts de combate, saque e chefe no Play Mode; avaliar leitura, colisão, portais e conforto das esquivas com input real.
+2. Ajustar dimensões ou posições de módulos com base nessa passagem, preservando os prefabs e os três arranjos reutilizáveis.
+3. Definir com o dono a regra de XP/perda por morte antes de implementar; XP ainda não existe no piloto.
+4. Consolidar equipamento e persistência da progressão, depois revisar dificuldades e economia.
+5. Fazer a revisão de build, resolução, desempenho e Console quando os controles e arenas forem aprovados. Manter a produção de arte pausada até o dono reabri-la.
 
 ## Registro histórico do protótipo 2D
 

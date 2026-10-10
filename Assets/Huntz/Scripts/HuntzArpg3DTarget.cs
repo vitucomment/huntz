@@ -82,6 +82,7 @@ public sealed class HuntzArpg3DTarget : MonoBehaviour
         if (distance > contactRange * 0.72f)
         {
             Vector3 direction = toPlayer.normalized;
+            if (characterController != null) direction = FindOpenSteeringDirection(direction);
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
             Vector3 velocity = direction * moveSpeed;
             if (characterController != null)
@@ -101,6 +102,66 @@ public sealed class HuntzArpg3DTarget : MonoBehaviour
             nextContactDamageTime = Time.time + 1.1f;
             player.ReceiveDamage(contactDamage, transform.position);
         }
+    }
+
+    Vector3 FindOpenSteeringDirection(Vector3 desiredDirection)
+    {
+        Vector3 center = transform.TransformPoint(characterController.center);
+        float segment = Mathf.Max(0f, characterController.height * 0.5f - characterController.radius);
+        Vector3 bottom = center - Vector3.up * segment;
+        Vector3 top = center + Vector3.up * segment;
+        float probeDistance = Mathf.Clamp(moveSpeed * Time.deltaTime * 5f, 0.55f, 1.15f);
+        RaycastHit blockingHit = default;
+        bool blocked = false;
+
+        RaycastHit[] hits = Physics.CapsuleCastAll(bottom, top, characterController.radius * 0.9f,
+            desiredDirection, probeDistance, ~0, QueryTriggerInteraction.Ignore);
+        float closestDistance = float.PositiveInfinity;
+        foreach (RaycastHit hit in hits)
+        {
+            if (!IsArenaBlocker(hit.collider) || hit.distance >= closestDistance) continue;
+            blockingHit = hit;
+            closestDistance = hit.distance;
+            blocked = true;
+        }
+
+        if (!blocked) return desiredDirection;
+
+        Vector3 tangent = Vector3.Cross(Vector3.up, blockingHit.normal);
+        tangent.y = 0f;
+        if (tangent.sqrMagnitude < 0.01f) return desiredDirection;
+        tangent.Normalize();
+        Vector3 left = (desiredDirection + tangent * 0.9f).normalized;
+        Vector3 right = (desiredDirection - tangent * 0.9f).normalized;
+        bool leftOpen = !IsArenaDirectionBlocked(bottom, top, left, 0.8f);
+        bool rightOpen = !IsArenaDirectionBlocked(bottom, top, right, 0.8f);
+
+        if (leftOpen && rightOpen)
+            return Vector3.Dot(left, desiredDirection) >= Vector3.Dot(right, desiredDirection) ? left : right;
+        if (leftOpen) return left;
+        if (rightOpen) return right;
+        return Vector3.Dot(tangent, desiredDirection) >= 0f ? tangent : -tangent;
+    }
+
+    bool IsArenaDirectionBlocked(Vector3 bottom, Vector3 top, Vector3 direction, float distance)
+    {
+        RaycastHit[] hits = Physics.CapsuleCastAll(bottom, top, characterController.radius * 0.9f,
+            direction, distance, ~0, QueryTriggerInteraction.Ignore);
+        foreach (RaycastHit hit in hits)
+        {
+            if (IsArenaBlocker(hit.collider)) return true;
+        }
+        return false;
+    }
+
+    static bool IsArenaBlocker(Collider candidate)
+    {
+        HuntzArpg3DGrayboxModule module = candidate != null
+            ? candidate.GetComponentInParent<HuntzArpg3DGrayboxModule>()
+            : null;
+        if (module == null || module.Kind == HuntzArpg3DGrayboxModuleKind.Floor
+            || module.Kind == HuntzArpg3DGrayboxModuleKind.Platform) return false;
+        return true;
     }
 
     public void TakeHit(int amount)

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142f1203a1b9a494780dccd59193f7d6, type: 3}
+  m_Name: GrayboxArenaKit
+  m_EditorClassIdentifier: Assembly-CSharp::HuntzArpg3DGrayboxKit
+  floorTile: {fileID: 6915219058179117955, guid: 8670a92094b435741949a23e7c2ed9d3, type: 3}
+  wallSegment: {fileID: 3580636076913244041, guid: ede7d4983e632324d8c502bd7a48a5b5, type: 3}
+  pillar: {fileID: 3457122355666828879, guid: bdd6e7d04489eb4439998cad44fbe193, type: 3}
+  cover: {fileID: 8513517508281698321, guid: bcbc6ce8ce49c2e41a485ed24d5ad96a, type: 3}
+  platform: {fileID: 2447283658038690478, guid: 3cab8a0aad0a3544cb733848ce480219, type: 3}

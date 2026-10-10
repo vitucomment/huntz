@@ -9519,6 +9519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HuntzArpg3DHuntDirector
   player: {fileID: 2091798339}
+  arenaKit: {fileID: 11400000, guid: 5b1ecc5ac8c2e7c4d82782f1186f6e72, type: 2}
   deathReturnDelay: 1.4
 --- !u!1 &2103124532
 GameObject:

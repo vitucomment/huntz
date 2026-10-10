@@ -17,10 +17,18 @@ O único fluxo ativo é o piloto 3D. Os arquivos 2D que ainda estão no reposit�
 
 Arte final e geração paga seguem pausadas; a meta desta fase é trocar graybox por graybox melhor estruturado e contratos de gameplay reutilizáveis, sem reconstruir a cena inteira a cada iteração.
 
-1. **Combate corpo a corpo — base integrada.** A espada graybox está montada no `WeaponSocket`; `HuntzArpg3DWeaponGeometry` define base/ponta e uma cápsula de contato. O golpe tem preparação, impacto e recuperação com o evento alinhado à pose de impacto; dano é consultado apenas nesse evento e cada alvo recebe um acerto por golpe. O Unity MCP confirmou rig válido e, em Play Mode controlado, um alvo a 1 m recebeu dano e outro a 3 m não. O dono já validou o combate durante a Hunt completa. Próximo refinamento: observar visualmente a trajetória no Play Mode com input real, calibrar o raio/alcance e adicionar feedback de impacto quando a geometria estiver aprovada.
-2. **Kit de geometria graybox — próxima fatia.** Criar módulos reutilizáveis de piso, parede baixa/alta, pilares, cobertura e plataformas, cada um com apresentação e colisão ajustadas; validar escala em relação ao guerreiro, largura de passagem, linhas de visão da câmera e oclusão do personagem. Usar esses módulos para dar silhuetas diferentes às salas e não alterar a conectividade A1–C3.
-3. **Legibilidade da Hunt.** Variar arenas por função (combate, saque, chefe), adicionar pontos de referência e rotas legíveis, e conferir portais/gates, espaço de esquiva e alcance corpo a corpo em cada arranjo. Só então considerar a geometria graybox apta a servir de proxy para produção visual.
-4. **Progressão e qualidade da fatia.** Definir XP/perda por morte com o dono antes de implementar; em seguida consolidar equipamento/persistência e validar build standalone. A Hunt completa e o retorno após morte já foram manualmente confirmados pelo dono.
+1. **Combate corpo a corpo — base integrada.** A espada graybox está no `WeaponSocket`; a cápsula lê base/ponta da lâmina no evento da pose de impacto. O dono validou o combate na Hunt e o Play Mode controlado confirmou acerto a 1 m e ausência de acerto a 2 m e 3 m. Revisar sensação visual com input real continua útil.
+2. **Kit e layouts graybox — concluídos nesta fatia.** Os prefabs de piso, parede, pilar, cobertura e plataforma alimentam três arranjos diferentes por função da sala. As dimensões, colisores, esquivas de 4 m, alcance da espada e linha da câmera foram conferidos pelo Unity MCP; detalhes e limites estão na seção abaixo.
+3. **Próxima conferência — passagem manual do dono.** Percorrer combate, saque e chefe no Play Mode para sentir a colisão, a leitura isométrica e as esquivas com input real. As consultas do MCP verificam geometria e física, mas não substituem uma partida controlada pelo dono.
+4. **Progressão e qualidade da fatia.** Definir XP/perda por morte antes de implementar; depois consolidar equipamento/persistência e validar build standalone. A produção de arte permanece pausada.
+
+### Kit modular e arenas graybox — 2026-10-09
+
+- `Huntz/Prototype 3D/Build Graybox Arena Kit` gera cinco prefabs reutilizáveis sob `Assets/Huntz/Prototype/Isometric3D/Environment/GrayboxKit`: FloorTile (2,26 × 0,06 × 2,22 m), WallSegment (1,35 × 0,88 × 0,22 m), Pillar (0,72 × 1,45 × 0,72 m), Cover (1,10 × 0,62 × 0,52 m) e Platform (1,45 × 0,16 × 1,45 m). `Presentation` não tem collider; `Collision` possui um `BoxCollider` sólido configurado pelo componente `HuntzArpg3DGrayboxModule`.
+- Cada sala tem piso 5×5 (25 módulos). Combate usa quatro coberturas baixas; saque usa quatro paredes baixas, baú e uma placa elevada extra (26 pisos); chefe usa quatro plataformas com pilares. São três variantes por função, ainda sem um layout exclusivo para cada nó individual do grafo 3×3.
+- No Play Mode, o MCP trocou controladamente entre os três tipos de sala e verificou contagem e configuração dos colisores. `CharacterController` percorreu capsule casts de 4 m nas oito direções sem atingir módulos. A abertura visual dos portais é 1,04 m para 0,68 m de diâmetro do jogador. A linha da câmera até o tronco permaneceu desobstruída em todas as três variantes.
+- Na pose de impacto de `Attack` (0,2108 s), o alvo a 1 m passou de 3 para 2 HP; os alvos a 2 m e 3 m permaneceram com 3 HP. As capturas da Game View revisaram a silhueta dos três arranjos e o piso sem frestas entre placas.
+- Unity 6000.6.4f1 recompilou sem erros C#. O Console não mostrou erros ou avisos de código; apareceu uma única mensagem interna do MCP (`WebSocket is not initialised`). O Editor voltou ao Edit Mode, a cena 3D está limpa e continua como a única cena de Build Settings. Não houve build ou execução de testes automatizados; arte segue pausada.
 
 ### Incremento de arma e hitbox — 2026-10-09
 
@@ -36,12 +44,12 @@ Arte final e geração paga seguem pausadas; a meta desta fase é trocar graybox
 - Interagir com o Portal HZ inicia Hunt 01 Fácil, com mapa lógico conectado 3×3 (A1 entrada, C3 chefe final), gates nas salas adjacentes e revisita de nós já limpos. Tipos não visitados ficam ocultos no minimapa. Inimigos bloqueiam as saídas até serem derrotados.
 - O diretor sorteia uma sala de saque e um chefe surpresa por run. O baú e os encontros concedem fragmentos provisórios; o chefe final encerra e retorna à MainLand. Morrer na Hunt retorna à base depois de 1,4 s, recupera vida/vigor e mantém fragmentos.
 - A Unity recompilou sem erros C#. A cena foi instalada pelo Editor MCP e salva. Na primeira validação, a Hunt ainda não havia sido percorrida; o dono confirmou depois a conclusão ponta a ponta e o retorno à MainLand após morrer, conforme o registro mais recente no topo deste handoff.
-- Limites conhecidos: todos os nós reutilizam a arena graybox; só a Fácil está ligada. Não há XP/níveis, persistência de carteira, loot equipável, lojas, stash, atributos ou habilidades funcionais. Fragmentos existem somente enquanto o jogador está na sessão.
+- Limites conhecidos: os nós usam uma das três variantes graybox conforme sua função, sem layout exclusivo por nó; só a Fácil está ligada. Não há XP/níveis, persistência de carteira, loot equipável, lojas, stash, atributos ou habilidades funcionais. Fragmentos existem somente enquanto o jogador está na sessão.
 
 ### Resultado da validação manual da Hunt
 
 - O dono percorreu a Hunt do início ao fim e verificou que morrer retorna à MainLand. Não há relato novo de problemas no fluxo. A perda de XP permanece fora até a regra ser decidida.
-- A geometria ainda precisa de uma avaliação orientada a conteúdo: salas distintas, espaços de manobra, colisores e legibilidade isométrica. Essa é a próxima etapa, antes de chamar o graybox de proxy confiável para arte final.
+- Os três papéis de arena já têm geometria e colisores próprios, com espaço de esquiva e alcance verificados por sonda no Editor. Ainda falta o dono avaliar o conforto e a leitura durante uma partida manual em cada layout antes de tratar o graybox como proxy aprovado para a próxima fase.
 
 ## Incremento mais recente — rig humanoide 3D, 2026-10-08
 

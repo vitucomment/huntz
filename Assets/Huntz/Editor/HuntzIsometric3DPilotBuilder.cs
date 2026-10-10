@@ -71,6 +71,7 @@ public static class HuntzIsometric3DPilotBuilder
         }
 
         EnsureFolders();
+        HuntzArpg3DGrayboxKit arenaKit = HuntzArpg3DGrayboxKitBuilder.EnsureKitAssets();
         Palette palette = CreatePaletteMaterials();
         HuntzArpg3DAppearanceProfile baseAppearance = CreateAppearanceProfile("BaseSteel", palette,
             new Color(0.18f, 0.36f, 0.52f), new Color(0.14f, 0.09f, 0.06f), new Color(0.9f, 0.54f, 0.12f));
@@ -109,7 +110,7 @@ public static class HuntzIsometric3DPilotBuilder
         BuildTrainingHunt(environment.transform, hunt, rigPrefab, baseAppearance, alternateAppearance,
             palette, player, mainArrival, huntArrival);
         HuntzArpg3DHuntDirector huntDirector = environment.AddComponent<HuntzArpg3DHuntDirector>();
-        huntDirector.Configure(playerController);
+        huntDirector.Configure(playerController, arenaKit);
 
         EditorSceneManager.MarkSceneDirty(scene);
         if (!EditorSceneManager.SaveScene(scene, PilotScenePath))
@@ -193,7 +194,8 @@ public static class HuntzIsometric3DPilotBuilder
         HuntzArpg3DHuntDirector director = environment.GetComponent<HuntzArpg3DHuntDirector>();
         if (director == null) director = Undo.AddComponent<HuntzArpg3DHuntDirector>(environment);
         Undo.RecordObject(director, "Install Hunt vertical slice");
-        director.Configure(player);
+        HuntzArpg3DGrayboxKit arenaKit = HuntzArpg3DGrayboxKitBuilder.EnsureKitAssets();
+        director.Configure(player, arenaKit);
         EditorSceneManager.MarkSceneDirty(scene);
         if (!EditorSceneManager.SaveScene(scene, PilotScenePath))
         {
