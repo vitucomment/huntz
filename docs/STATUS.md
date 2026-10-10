@@ -5,7 +5,17 @@ Atualizado em 2026-10-09. Este é o registro do que está integrado e do que foi
 ## Validação manual relatada pelo dono — 2026-10-09
 
 - O dono informou que, no Play Mode, testou e validou andar, correr, esquiva, ataque, monstros, dano e morte. Este registro vem do relato do dono; não houve uma nova partida nesta sessão.
-- A Hunt completa de ponta a ponta continua pendente, conforme a seção de validação abaixo.
+- Na atualização mais recente, o dono confirmou ter concluído a Hunt do início ao fim e ter morrido no percurso. A morte o retornou à MainLand como esperado.
+- A penalidade de experiência por morte permanece adiada para uma decisão de design; não foi implementada perda de XP.
+
+## Incremento de arma/hitbox e avaliação do graybox — 2026-10-09
+
+- A espada graybox foi refinada com lâmina, ponta, guarda, empunhadura, anéis e pomo. Ela fica no `WeaponSocket` da mão direita, alinhada à frente e levemente para baixo. O item ainda não pertence a um inventário/equipamento funcional.
+- `HuntzArpg3DWeaponGeometry` guarda os pontos de base/ponta da lâmina, define raio de 0,20 m e desenha a cápsula ao selecionar a arma no Editor. `HuntzArpg3DRig.ValidateRig` exige uma geometria de arma configurada no socket.
+- O ataque aplica dano por uma consulta `Physics.OverlapCapsule` entre os pontos atuais da lâmina, disparada por `OnWeaponImpact`; cada alvo sofre no máximo um acerto por golpe. O clipe de 0,68 s tem as curvas alinhadas aos tempos normalizados da preparação, impacto (31%) e recuperação; o evento está em 0,2108 s no keyframe de impacto.
+- Unity MCP atualizou o clipe de ataque e o prefab compartilhado do rig sem reconstruir a cena. O prefab passou em `ValidateRig`. Um spot-check no Play Mode posicionou dois alvos a 1 m e 3 m, aplicou a pose de impacto e acionou o callback do rig: o alvo próximo caiu de 3 para 2 de vida e o distante continuou com 3. Esse ensaio confirma a cápsula e a resolução de dano nessa pose; não substitui a revisão manual da animação e do ataque com input real. Depois da sonda, o Editor voltou ao Edit Mode, a cena ficou limpa e a consulta do Console por avisos/erros C# retornou zero entradas.
+- A captura da Game View mostra a espada conectada ao personagem. A geometria existente já permite conferir escala, rota e colisão; ainda é um graybox básico, com volumes simples e uma única arena repetida pelos nós da Hunt, não uma representação espacial suficiente para o jogo final.
+- Próxima fatia de geometria: kit modular de piso, parede, pilares e plataformas com colisores correspondentes; depois, variar silhueta e obstáculos entre salas, conferindo rota, alcance corpo a corpo, leitura isométrica e oclusão. A produção de arte segue pausada.
 
 ## Refinamento sequencial do piloto 3D — 2026-10-08
 

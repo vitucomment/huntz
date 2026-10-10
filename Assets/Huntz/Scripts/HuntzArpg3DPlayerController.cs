@@ -22,7 +22,6 @@ public sealed class HuntzArpg3DPlayerController : MonoBehaviour
     [SerializeField, Range(0f, 0.3f)] float attackInputBuffer = 0.16f;
     [SerializeField, Min(0f)] float dodgeInvulnerabilityTail = 0.08f;
     [SerializeField, Min(1f)] float facingTurnSpeed = 1080f;
-    [SerializeField, Min(0.1f)] float attackRange = 1.65f;
     [SerializeField, Min(0.1f)] float interactionRange = 2.5f;
     [SerializeField, Min(1)] int attackDamage = 1;
     [SerializeField, Min(1)] int maxHealth = 5;
@@ -338,8 +337,11 @@ public sealed class HuntzArpg3DPlayerController : MonoBehaviour
 
     void ResolveWeaponImpact()
     {
-        Vector3 center = transform.position + Vector3.up * 0.85f + facing * attackRange;
-        Collider[] overlaps = Physics.OverlapSphere(center, 1.15f, ~0, QueryTriggerInteraction.Ignore);
+        if (rig == null || !rig.TryGetWeaponHitCapsule(out Vector3 bladeBase, out Vector3 bladeTip, out float hitRadius))
+            return;
+
+        Collider[] overlaps = Physics.OverlapCapsule(bladeBase, bladeTip, hitRadius, ~0,
+            QueryTriggerInteraction.Ignore);
         foreach (Collider overlap in overlaps)
         {
             HuntzArpg3DTarget target = overlap.GetComponentInParent<HuntzArpg3DTarget>();

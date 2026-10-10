@@ -4,8 +4,8 @@ Atualizado em 2026-10-09.
 
 ## Retorno mais recente do dono — 2026-10-09
 
-- No Play Mode, o dono testou e validou andar, correr, esquiva, ataque, monstros, dano e morte. É uma validação manual relatada pelo dono; não foi repetida nesta sessão.
-- A interação E e uma Hunt completa de ponta a ponta não foram mencionadas nesse retorno, então continuam pendentes de validação.
+- O dono concluiu uma Hunt inteira do início ao fim, incluindo encontros e morte. Confirmou que a morte o levou de volta à MainLand. Essa passagem foi testada pelo dono no Play Mode.
+- Movimento, corrida, esquiva, ataque, monstros e dano também foram validados pelo dono. A penalidade de XP por morte fica para uma decisão de design posterior; XP ainda não existe no piloto.
 
 ## Pedido e diagnóstico atual
 
@@ -13,41 +13,35 @@ Huntz agora é um RPG de ação isométrico 3D inspirado no gênero de Diablo/Pa
 
 O único fluxo ativo é o piloto 3D. Os arquivos 2D que ainda estão no repositório são históricos e não devem orientar o design novo.
 
-## Plano passo a passo — refino do piloto 3D
+## Plano de evolução e retomada
 
-As etapas são sequenciais. Cada uma precisa compilar e passar sua verificação manual no Unity antes de começarmos a próxima. Arte final, compras e geração de assets ficam fora do plano por enquanto.
+Arte final e geração paga seguem pausadas; a meta desta fase é trocar graybox por graybox melhor estruturado e contratos de gameplay reutilizáveis, sem reconstruir a cena inteira a cada iteração.
 
-0. **Linha de base — conferida.** Instância Unity 6000.6.4f1, cena 3D correta e limpa, Console sem entradas de erro/aviso e `Isometric3DARPGPilot` como única cena de build.
-1. **Chão, colisões e locomoção — ativa.** Separar colisão da apresentação das ilhas; conferir personagem apoiado no chão, bordas e objetos sólidos; validar caminhada, corrida, parada, rotação e transferência Mainland ↔ Hunt. Critério de saída: compilação limpa e passagem manual sem atravessar o chão/obstáculos, cair ao se mover em área válida ou perder o controle nas transições.
-2. **Rig e animação.** Consolidar poses Idle/Walk/Run e animações de ação no rig reutilizável, manter raiz/pés e socket estáveis e verificar a leitura visual na câmera de jogo. Preservar Generic nos clips de curva Transform; só ativar retarget Humanoid depois que os clips estiverem convertidos e validados.
-3. **Contrato de combate.** Formalizar preparação → impacto → recuperação; sincronizar pose, espada no `WeaponSocket`, efeito e hit único por alvo. Depois conferir esquiva, invulnerabilidade, dano, reação e morte.
-4. **Cenário e Hunt.** Modularizar arena, colisores, encontros, portais e NPCs para reuso; jogar a Hunt Fácil A1 → saídas → baú/chefe surpresa → C3 → retorno. Critério de saída: caminho acessível, colisões corretas e fluxo concluído no Play Mode.
-5. **Estrutura de runtime.** Desacoplar controles e apresentação da lógica do personagem, centralizar as ações de input e substituir a HUD provisória por interface de jogo, preservando os mesmos comandos.
-6. **Progressão da fatia.** Definir e implementar persistência mínima para recursos, equipamento e progresso antes de ampliar dificuldades, economia ou conteúdo.
-7. **Build e qualidade.** Revisar Console, resoluções, desempenho, configurações de build e uma partida standalone. Só reabrir a produção de arte depois da base aprovada.
+1. **Combate corpo a corpo — base integrada.** A espada graybox está montada no `WeaponSocket`; `HuntzArpg3DWeaponGeometry` define base/ponta e uma cápsula de contato. O golpe tem preparação, impacto e recuperação com o evento alinhado à pose de impacto; dano é consultado apenas nesse evento e cada alvo recebe um acerto por golpe. O Unity MCP confirmou rig válido e, em Play Mode controlado, um alvo a 1 m recebeu dano e outro a 3 m não. O dono já validou o combate durante a Hunt completa. Próximo refinamento: observar visualmente a trajetória no Play Mode com input real, calibrar o raio/alcance e adicionar feedback de impacto quando a geometria estiver aprovada.
+2. **Kit de geometria graybox — próxima fatia.** Criar módulos reutilizáveis de piso, parede baixa/alta, pilares, cobertura e plataformas, cada um com apresentação e colisão ajustadas; validar escala em relação ao guerreiro, largura de passagem, linhas de visão da câmera e oclusão do personagem. Usar esses módulos para dar silhuetas diferentes às salas e não alterar a conectividade A1–C3.
+3. **Legibilidade da Hunt.** Variar arenas por função (combate, saque, chefe), adicionar pontos de referência e rotas legíveis, e conferir portais/gates, espaço de esquiva e alcance corpo a corpo em cada arranjo. Só então considerar a geometria graybox apta a servir de proxy para produção visual.
+4. **Progressão e qualidade da fatia.** Definir XP/perda por morte com o dono antes de implementar; em seguida consolidar equipamento/persistência e validar build standalone. A Hunt completa e o retorno após morte já foram manualmente confirmados pelo dono.
 
-### Estado e retomada da etapa 1
+### Incremento de arma e hitbox — 2026-10-09
 
-- `HuntzIsometric3DPilotBuilder.cs` agora prepara malhas de colisão independentes dos MeshRenderers e inclui `Huntz/Prototype 3D/Refresh Island Collision`, que migra as ilhas da cena existente sem reconstruí-la.
-- Unity 6000.6.4f1 recompilou sem erros/avisos; o método público de atualização foi chamado pelo MCP no Edit Mode e salvou os filhos `Collision` das duas ilhas. A cena confirma `rootCollider=false`, `childMeshCollider=true`, mesh própria e transform local zero nas duas ilhas.
-- No Play Mode, a cápsula do jogador permaneceu apoiada no chão; `CharacterController.Move` bloqueou a parede da oficina (`Sides, Below`) e o pilar da Hunt (`Sides`). Uma sonda vertical no pilar retornou `Below`; os raycasts acertaram o interior e não acertaram pontos externos das duas ilhas. Chamar os interagíveis pelo MCP fez MainLand → Hunt (`(38, 0.05, -0.85)`) → MainLand (`(-2.5, 0.05, -0.8)`).
-- O Editor terminou em Edit Mode, cena salva/limpa e piloto 3D como única entrada de Build Settings. Console final: zero erros e avisos. Não houve build ou teste automatizado.
-- Ainda falta passar WASD, corrida, parada, rotação e E com o Game View em foco. A janela estava sem foco do sistema operacional; o dispositivo recebeu W sintético, mas o `InputAction` permaneceu sem valor, então essa tentativa não confirma nem refuta o comportamento real. Mantenha a etapa 2 bloqueada até observar esses controles manualmente. A execução MCP de `execute_menu_item` só confirmou a tentativa; a migração foi aplicada chamando o método público do builder via `execute_code`.
-- Próxima ação: focar o Game View no Editor, validar WASD/corrida/parada/rotação e a tecla E em Play Mode. Se a passagem funcionar, avançar ao rig/animações; se não, corrigir a entrada ou o movimento antes.
+- A espada foi detalhada em lâmina, ponta, guarda, empunhadura, anéis e pomo e permanece filha do socket da mão direita. Isso é uma representação visual graybox, não um item selecionável pelo inventário.
+- A cápsula de contato usa os transforms da base e ponta da lâmina, respeitando escala, e é desenhada ao selecionar o objeto no Editor. O controlador consulta essa cápsula no callback `OnWeaponImpact`, em vez de aplicar dano com uma esfera de alcance genérica.
+- As curvas do clipe `Attack` e seu evento agora compartilham o tempo normalizado de impacto (31% de um clipe de 0,68 s, isto é, 0,2108 s); as poses foram ajustadas para que a lâmina avance no frame do golpe.
+- Spot-check pelo Unity MCP: `ValidateRig` passou; com a pose de impacto aplicada, um alvo próximo perdeu 1 HP e outro além do alcance permaneceu intacto. A sonda usou o callback de gameplay e a pose exata, não uma partida automatizada ou um teste de input/animação quadro a quadro.
+- O Editor voltou ao Edit Mode, a cena ativa segue salva/limpa e é a única cena habilitada em Build Settings. Sem build ou testes automatizados nesta etapa.
 
 ## Estado funcional de base — primeira Hunt jogável 3D, 2026-10-08
 
 - A cena salva `Assets/Huntz/Prototype/Isometric3D/Scenes/Isometric3DARPGPilot.unity` tem `HuntzArpg3DHuntDirector` no root `Generated 3D ARPG Graybox`. O menu `Huntz/Prototype 3D/Install Hunt Vertical Slice` adiciona somente esse sistema e salva a cena; o builder principal anexa o componente em futuras reconstruções.
 - Interagir com o Portal HZ inicia Hunt 01 Fácil, com mapa lógico conectado 3×3 (A1 entrada, C3 chefe final), gates nas salas adjacentes e revisita de nós já limpos. Tipos não visitados ficam ocultos no minimapa. Inimigos bloqueiam as saídas até serem derrotados.
 - O diretor sorteia uma sala de saque e um chefe surpresa por run. O baú e os encontros concedem fragmentos provisórios; o chefe final encerra e retorna à MainLand. Morrer na Hunt retorna à base depois de 1,4 s, recupera vida/vigor e mantém fragmentos.
-- A Unity recompilou sem erros C#. A cena foi instalada pelo Editor MCP e salva. O Console tem um aviso interno do MCP (`WebSocket is not initialised`), sem erro de compilação. A Hunt ainda não foi jogada por inteiro no Play Mode.
+- A Unity recompilou sem erros C#. A cena foi instalada pelo Editor MCP e salva. Na primeira validação, a Hunt ainda não havia sido percorrida; o dono confirmou depois a conclusão ponta a ponta e o retorno à MainLand após morrer, conforme o registro mais recente no topo deste handoff.
 - Limites conhecidos: todos os nós reutilizam a arena graybox; só a Fácil está ligada. Não há XP/níveis, persistência de carteira, loot equipável, lojas, stash, atributos ou habilidades funcionais. Fragmentos existem somente enquanto o jogador está na sessão.
 
-### Validação da Hunt após as etapas de chão e combate
+### Resultado da validação manual da Hunt
 
-1. Jogar manualmente Portal → encontros/saídas → baú → chefe surpresa → C3 → MainLand; verificar se cada gate é alcançável, se as colisões da arena não bloqueiam a rota e se a HUD cabe na resolução real.
-2. Testar morte na Hunt e confirmar retorno/cura, depois sair voluntariamente pelo Portal de Retorno.
-3. Corrigir com base na partida e então adicionar o primeiro serviço persistente de progressão/inventário. Manter Medium/Hard, outras classes e sistemas econômicos como roteiro até a Hunt Fácil ficar sólida.
+- O dono percorreu a Hunt do início ao fim e verificou que morrer retorna à MainLand. Não há relato novo de problemas no fluxo. A perda de XP permanece fora até a regra ser decidida.
+- A geometria ainda precisa de uma avaliação orientada a conteúdo: salas distintas, espaços de manobra, colisores e legibilidade isométrica. Essa é a próxima etapa, antes de chamar o graybox de proxy confiável para arte final.
 
 ## Incremento mais recente — rig humanoide 3D, 2026-10-08
 

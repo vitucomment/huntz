@@ -23,6 +23,10 @@ public static class HuntzIsometric3DPilotBuilder
     const string RigPrefabPath = PrefabFolder + "/HumanoidRig.prefab";
     const string PlayerPrefabPath = PrefabFolder + "/Player.prefab";
     const string ControllerPath = AnimationFolder + "/HuntzHumanoid3D.controller";
+    const float AttackClipDuration = 0.68f;
+    const float AttackWindupNormalizedTime = 0.16f;
+    const float AttackImpactNormalizedTime = 0.31f;
+    const float AttackRecoveryNormalizedTime = 0.46f;
 
     static readonly string[] ClipNames = { "Idle", "Walk", "Run", "Attack", "Dodge", "Hurt", "Death" };
 
@@ -128,7 +132,7 @@ public static class HuntzIsometric3DPilotBuilder
             return;
         }
 
-        MeshFilter[] filters = UnityEngine.Object.FindObjectsByType<MeshFilter>(FindObjectsSortMode.None);
+        MeshFilter[] filters = UnityEngine.Object.FindObjectsByType<MeshFilter>();
         int updated = 0;
         foreach (MeshFilter filter in filters)
         {
@@ -411,17 +415,27 @@ public static class HuntzIsometric3DPilotBuilder
             (clip, times) => AuthorLocomotionCycle(clip, times, 36f, 35f, 18f, 0.018f, 4f, 0.625f));
         clips[2] = CreateClip("Run", 0.46f, true,
             (clip, times) => AuthorLocomotionCycle(clip, times, 56f, 58f, 26f, 0.04f, 8f, 0.5f));
-        clips[3] = CreateClip("Attack", 0.68f, false, (clip, times) =>
+        float[] attackKeyTimes =
+        {
+            0f,
+            AttackClipDuration * AttackWindupNormalizedTime,
+            AttackClipDuration * AttackImpactNormalizedTime,
+            AttackClipDuration * AttackRecoveryNormalizedTime,
+            AttackClipDuration
+        };
+        clips[3] = CreateClip("Attack", AttackClipDuration, false, (clip, times) =>
         {
             string arm = "Armature/Hips/Spine/Chest/RightShoulder/RightUpperArm";
             string elbow = arm + "/RightLowerArm";
-            AddRotationCurve(clip, arm, new[] { 0f, 0.16f, 0.31f, 0.46f, 0.68f },
-                t => AttackArmPose(t));
-            AddRotationCurve(clip, elbow, new[] { 0f, 0.16f, 0.31f, 0.46f, 0.68f },
-                t => AttackElbowPose(t));
+            AddRotationCurve(clip, arm, attackKeyTimes, t => AttackArmPose(t));
+            AddRotationCurve(clip, elbow, attackKeyTimes, t => AttackElbowPose(t));
             AnimationUtility.SetAnimationEvents(clip, new[]
             {
-                new AnimationEvent { functionName = nameof(HuntzArpg3DRig.OnWeaponImpact), time = 0.31f }
+                new AnimationEvent
+                {
+                    functionName = nameof(HuntzArpg3DRig.OnWeaponImpact),
+                    time = AttackClipDuration * AttackImpactNormalizedTime
+                }
             });
         });
         clips[4] = CreateClip("Dodge", 0.32f, false, (clip, times) =>
@@ -594,17 +608,41 @@ public static class HuntzIsometric3DPilotBuilder
 
     static Vector3 AttackArmPose(float time)
     {
-        if (time < 0.16f) return Vector3.Lerp(new Vector3(-8f, 0f, -8f), new Vector3(-86f, -12f, -32f), time / 0.16f);
-        if (time < 0.31f) return Vector3.Lerp(new Vector3(-86f, -12f, -32f), new Vector3(32f, 16f, 12f), (time - 0.16f) / 0.15f);
-        if (time < 0.46f) return Vector3.Lerp(new Vector3(32f, 16f, 12f), new Vector3(14f, 8f, 5f), (time - 0.31f) / 0.15f);
-        return Vector3.Lerp(new Vector3(14f, 8f, 5f), new Vector3(-8f, 0f, -8f), (time - 0.46f) / 0.22f);
+        if (time < AttackWindupNormalizedTime)
+            return Vector3.Lerp(Vector3.zero, new Vector3(55f, -12f, -18f), time / AttackWindupNormalizedTime);
+        if (time < AttackImpactNormalizedTime)
+        {
+            float phase = (time - AttackWindupNormalizedTime) /
+                          (AttackImpactNormalizedTime - AttackWindupNormalizedTime);
+            return Vector3.Lerp(new Vector3(55f, -12f, -18f), new Vector3(-24f, 0f, 0f), phase);
+        }
+        if (time < AttackRecoveryNormalizedTime)
+        {
+            float phase = (time - AttackImpactNormalizedTime) /
+                          (AttackRecoveryNormalizedTime - AttackImpactNormalizedTime);
+            return Vector3.Lerp(new Vector3(-24f, 0f, 0f), new Vector3(-8f, 4f, 3f), phase);
+        }
+
+        float recovery = (time - AttackRecoveryNormalizedTime) / (1f - AttackRecoveryNormalizedTime);
+        return Vector3.Lerp(new Vector3(-8f, 4f, 3f), Vector3.zero, recovery);
     }
 
     static Vector3 AttackElbowPose(float time)
     {
-        if (time < 0.16f) return Vector3.Lerp(Vector3.zero, new Vector3(-52f, 0f, 0f), time / 0.16f);
-        if (time < 0.31f) return Vector3.Lerp(new Vector3(-52f, 0f, 0f), new Vector3(24f, 0f, 0f), (time - 0.16f) / 0.15f);
-        if (time < 0.46f) return Vector3.Lerp(new Vector3(24f, 0f, 0f), Vector3.zero, (time - 0.31f) / 0.15f);
+        if (time < AttackWindupNormalizedTime)
+            return Vector3.Lerp(Vector3.zero, new Vector3(52f, 0f, 0f), time / AttackWindupNormalizedTime);
+        if (time < AttackImpactNormalizedTime)
+        {
+            float phase = (time - AttackWindupNormalizedTime) /
+                          (AttackImpactNormalizedTime - AttackWindupNormalizedTime);
+            return Vector3.Lerp(new Vector3(52f, 0f, 0f), new Vector3(-14f, 0f, 0f), phase);
+        }
+        if (time < AttackRecoveryNormalizedTime)
+        {
+            float phase = (time - AttackImpactNormalizedTime) /
+                          (AttackRecoveryNormalizedTime - AttackImpactNormalizedTime);
+            return Vector3.Lerp(new Vector3(-14f, 0f, 0f), Vector3.zero, phase);
+        }
         return Vector3.zero;
     }
 
@@ -867,7 +905,7 @@ public static class HuntzIsometric3DPilotBuilder
 
         CreateArm(hips, chest, "Left", -1f, palette);
         Transform rightHand = CreateArm(hips, chest, "Right", 1f, palette);
-        Transform weaponSocket = NewBone("WeaponSocket", rightHand, new Vector3(0f, 0f, 0.08f));
+        Transform weaponSocket = NewBone("WeaponSocket", rightHand, new Vector3(0f, -0.08f, 0.18f));
         CreateSword(weaponSocket, palette);
         CreateLeg(hips, "Left", -1f, palette);
         CreateLeg(hips, "Right", 1f, palette);
@@ -1027,12 +1065,40 @@ public static class HuntzIsometric3DPilotBuilder
     {
         GameObject sword = new GameObject("Starter Sword");
         sword.transform.SetParent(socket, false);
+        sword.transform.localRotation = Quaternion.Euler(125f, 0f, 0f);
+
         CreatePart("Blade", PrimitiveType.Cube, sword.transform, new Vector3(0f, 0.36f, 0f),
-            new Vector3(0.12f, 0.66f, 0.075f), palette.metal, HuntzArpg3DPartSlot.Metal);
-        CreatePart("Guard", PrimitiveType.Cube, sword.transform, new Vector3(0f, 0.02f, 0f),
-            new Vector3(0.33f, 0.075f, 0.13f), palette.accent, HuntzArpg3DPartSlot.Accent);
-        CreatePart("Grip", PrimitiveType.Cylinder, sword.transform, new Vector3(0f, -0.12f, 0f),
-            new Vector3(0.07f, 0.12f, 0.07f), palette.leather, HuntzArpg3DPartSlot.Leather);
+            new Vector3(0.16f, 0.56f, 0.05f), palette.metal, HuntzArpg3DPartSlot.Metal);
+        CreatePart("BladeShoulder", PrimitiveType.Cube, sword.transform, new Vector3(0f, 0.62f, 0f),
+            new Vector3(0.13f, 0.14f, 0.045f), palette.metal, HuntzArpg3DPartSlot.Metal);
+        GameObject bladePoint = CreatePart("BladePoint", PrimitiveType.Cube, sword.transform,
+            new Vector3(0f, 0.735f, 0f), new Vector3(0.13f, 0.13f, 0.04f),
+            palette.metal, HuntzArpg3DPartSlot.Metal);
+        bladePoint.transform.localRotation = Quaternion.Euler(0f, 0f, 45f);
+
+        CreatePart("GuardCore", PrimitiveType.Cube, sword.transform, new Vector3(0f, 0.015f, 0f),
+            new Vector3(0.15f, 0.065f, 0.11f), palette.accent, HuntzArpg3DPartSlot.Accent);
+        GameObject leftGuard = CreatePart("GuardLeft", PrimitiveType.Cube, sword.transform,
+            new Vector3(-0.12f, 0.035f, 0f), new Vector3(0.15f, 0.06f, 0.1f),
+            palette.accent, HuntzArpg3DPartSlot.Accent);
+        leftGuard.transform.localRotation = Quaternion.Euler(0f, 0f, -18f);
+        GameObject rightGuard = CreatePart("GuardRight", PrimitiveType.Cube, sword.transform,
+            new Vector3(0.12f, 0.035f, 0f), new Vector3(0.15f, 0.06f, 0.1f),
+            palette.accent, HuntzArpg3DPartSlot.Accent);
+        rightGuard.transform.localRotation = Quaternion.Euler(0f, 0f, 18f);
+
+        CreatePart("Grip", PrimitiveType.Cylinder, sword.transform, new Vector3(0f, -0.105f, 0f),
+            new Vector3(0.065f, 0.12f, 0.065f), palette.leather, HuntzArpg3DPartSlot.Leather);
+        CreatePart("GripBandUpper", PrimitiveType.Cylinder, sword.transform, new Vector3(0f, -0.045f, 0f),
+            new Vector3(0.07f, 0.012f, 0.07f), palette.metal, HuntzArpg3DPartSlot.Metal);
+        CreatePart("GripBandLower", PrimitiveType.Cylinder, sword.transform, new Vector3(0f, -0.165f, 0f),
+            new Vector3(0.07f, 0.012f, 0.07f), palette.metal, HuntzArpg3DPartSlot.Metal);
+        CreatePart("Pommel", PrimitiveType.Sphere, sword.transform, new Vector3(0f, -0.245f, 0f),
+            new Vector3(0.11f, 0.11f, 0.11f), palette.accent, HuntzArpg3DPartSlot.Accent);
+
+        Transform bladeBase = NewBone("BladeBase", sword.transform, new Vector3(0f, 0.065f, 0f));
+        Transform bladeTip = NewBone("BladeTip", sword.transform, new Vector3(0f, 0.82f, 0f));
+        sword.AddComponent<HuntzArpg3DWeaponGeometry>().Configure(bladeBase, bladeTip, 0.2f);
     }
 
     static Transform NewBone(string name, Transform parent, Vector3 localPosition)

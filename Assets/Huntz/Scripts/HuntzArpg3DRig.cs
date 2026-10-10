@@ -35,6 +35,7 @@ public sealed class HuntzArpg3DRig : MonoBehaviour
     [SerializeField] Transform leftToeBase;
     [SerializeField] Transform rightToeBase;
     [SerializeField] Transform weaponSocket;
+    [SerializeField] HuntzArpg3DWeaponGeometry weaponGeometry;
     [SerializeField, Min(0.1f)] float attackDuration = 0.62f;
     [SerializeField, Min(0.1f)] float dodgeDuration = 0.32f;
     [SerializeField, Min(0.1f)] float hurtDuration = 0.28f;
@@ -55,6 +56,7 @@ public sealed class HuntzArpg3DRig : MonoBehaviour
     public Transform LeftToeBase => leftToeBase;
     public Transform RightToeBase => rightToeBase;
     public Transform WeaponSocket => weaponSocket;
+    public HuntzArpg3DWeaponGeometry WeaponGeometry => weaponGeometry;
     public float AttackDuration => attackDuration;
     public float DodgeDuration => dodgeDuration;
     public float HurtDuration => hurtDuration;
@@ -132,6 +134,12 @@ public sealed class HuntzArpg3DRig : MonoBehaviour
             return false;
         }
 
+        if (weaponGeometry == null || !weaponGeometry.transform.IsChildOf(weaponSocket) || !weaponGeometry.IsConfigured)
+        {
+            issue = "A configured weapon hit volume must be parented under WeaponSocket.";
+            return false;
+        }
+
         issue = null;
         return true;
     }
@@ -150,6 +158,17 @@ public sealed class HuntzArpg3DRig : MonoBehaviour
         if (rightFoot == null) rightFoot = transform.Find("Armature/Hips/RightUpperLeg/RightLowerLeg/RightFoot");
         if (leftToeBase == null) leftToeBase = transform.Find("Armature/Hips/LeftUpperLeg/LeftLowerLeg/LeftFoot/LeftToeBase");
         if (rightToeBase == null) rightToeBase = transform.Find("Armature/Hips/RightUpperLeg/RightLowerLeg/RightFoot/RightToeBase");
+        if (weaponGeometry == null && weaponSocket != null)
+            weaponGeometry = weaponSocket.GetComponentInChildren<HuntzArpg3DWeaponGeometry>(true);
+    }
+
+    public bool TryGetWeaponHitCapsule(out Vector3 start, out Vector3 end, out float radius)
+    {
+        if (weaponGeometry != null) return weaponGeometry.TryGetHitCapsule(out start, out end, out radius);
+        start = Vector3.zero;
+        end = Vector3.zero;
+        radius = 0f;
+        return false;
     }
 
     public void SetMoveSpeed(float speed, float gaitRate)
